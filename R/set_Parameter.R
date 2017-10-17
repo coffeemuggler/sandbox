@@ -7,14 +7,19 @@
 #'
 #'
 #' @param book \code{list} object, rule book to be edited.
-#' @param parameter \code{Character} scalar, keyword defining the parameter to be
-#'        defined. See \code{list_Parameters()} for available keywords. Some
+#' 
+#' @param parameter \code{Character} scalar, keyword defining the parameter to 
+#'        be defined. See \code{list_Parameters()} for available keywords. Some
 #'        parameters can be described by more than one function, see details.
+#'        
 #' @param type \code{Character} scalar, keyword defining the distribution
 #'        function used to describe the parameter. See details for available
 #'        keywords, default is "constant".
+#'        
 #' @return A list object.
+#' 
 #' @author Michael Dietze
+#' 
 #' @examples
 #'
 #' ## get empty rule book
@@ -22,19 +27,11 @@
 #'
 #' ## set dose rate parameterisation from default to "rnorm"
 #' book_2 <- set_Parameter(book = book_1,
-#'                         parameter = "dose_rate",
-#'                         type = "rnorm")
+#'                         parameter = "density",
+#'                         type = "exact")
 #'
-#' book_1$dose_rate
-#' book_2$dose_rate
-#'
-#' ## set grainsize parameterisation from default to "constant"
-#' book_3 <- set_Parameter(book = book_1,
-#'                         parameter = "grainsize",
-#'                         type = "constant")
-#'
-#' book_1$grainsize
-#' book_3$grainsize
+#' book_1$density$density_1$type
+#' book_2$density$density_1$type
 #'
 #' @export set_Parameter
 set_Parameter <- function(
@@ -55,9 +52,9 @@ set_Parameter <- function(
                         y = c(0, 1))
 
   ## constant definition
-  if(type == "constant") {
+  if(type == "exact") {
 
-    parameter_out <- list(type = "constant",
+    parameter_out <- list(type = "exact",
                           value = fun_dummy)
   }
 
