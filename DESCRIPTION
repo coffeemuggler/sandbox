@@ -1,0 +1,17 @@
+Package: sandbox
+Type: Package
+Title: Probablistic Numerical Modelling Of Sediment Properties
+Version: 0.0.2
+Date: 2017-04-06
+Author: Michael Dietze
+Maintainer: Michael Dietze <mdietze@gfz-potsdam.de>
+Description: Flexible framework for definition and application of time/depth-
+    based rules for sets of parameters for single grains that can be used to create
+    synthetic samples, used for synthetic preparation and synthetic measurements.
+License: GPL-3
+LazyData: TRUE
+Imports:
+    EMMAgeo,
+    RLumModel,
+    Luminescence
+RoxygenNote: 6.0.1
