@@ -191,8 +191,180 @@ get_RuleBook <- function(
           type = "rnorm",
           mean = fun_dummy,
           sd = fun_dummy)))
-  }
+  } else if(book == "osl") {
+    
+    ## get empty rule book
+    rule_book <- get_RuleBook(book = "empty")
+    
+    ## assign new book name
+    rule_book$book <- "osl"
+    
+    ## append OSL parameters - N
+    for(i in 1:9) {
+      
+      rule_book[[length(rule_book) + 1]] <- list(
+        group = "specific",
+        osl_Ni_1 = list(
+          type = "rnorm",
+          mean = fun_dummy,
+          sd = fun_dummy),
+        osl_Ni_2 = list(
+          type = "rnorm",
+          value = fun_dummy))
+      
+      names(rule_book)[length(rule_book)] <- 
+        paste("osl_N",i, sep = "")
+      
+      names(rule_book[[length(rule_book)]]) <- 
+        c("group",
+          paste("osl_N",i, "_1", sep = ""),
+          paste("osl_N",i, "_2", sep = ""))
+    }
+    
+    ## append OSL parameters - E
+    for(i in 1:9) {
+      
+      rule_book[[length(rule_book) + 1]] <- list(
+        group = "specific",
+        osl_Ei_1 = list(
+          type = "rnorm",
+          mean = fun_dummy,
+          sd = fun_dummy),
+        osl_Ei_2 = list(
+          type = "rnorm",
+          value = fun_dummy))
+      
+      names(rule_book)[length(rule_book)] <- 
+        paste("osl_E",i, sep = "")
+      
+      names(rule_book[[length(rule_book)]]) <- 
+        c("group",
+          paste("osl_E",i, "_1", sep = ""),
+          paste("osl_E",i, "_2", sep = ""))
+    }
 
+    ## append OSL parameters - s
+    for(i in 1:9) {
+      
+      rule_book[[length(rule_book) + 1]] <- list(
+        group = "specific",
+        osl_si_1 = list(
+          type = "rnorm",
+          mean = fun_dummy,
+          sd = fun_dummy),
+        osl_si_2 = list(
+          type = "rnorm",
+          value = fun_dummy))
+      
+      names(rule_book)[length(rule_book)] <- 
+        paste("osl_s",i, sep = "")
+      
+      names(rule_book[[length(rule_book)]]) <- 
+        c("group",
+          paste("osl_s",i, "_1", sep = ""),
+          paste("osl_s",i, "_2", sep = ""))
+    }
+    
+    ## append OSL parameters - A
+    for(i in 1:9) {
+      
+      rule_book[[length(rule_book) + 1]] <- list(
+        group = "specific",
+        osl_Ai_1 = list(
+          type = "rnorm",
+          mean = fun_dummy,
+          sd = fun_dummy),
+        osl_Ai_2 = list(
+          type = "rnorm",
+          value = fun_dummy))
+      
+      names(rule_book)[length(rule_book)] <- 
+        paste("osl_A",i, sep = "")
+      
+      names(rule_book[[length(rule_book)]]) <- 
+        c("group",
+          paste("osl_A",i, "_1", sep = ""),
+          paste("osl_A",i, "_2", sep = ""))
+    }
+    
+    ## append OSL parameters - B
+    for(i in 1:9) {
+      
+      rule_book[[length(rule_book) + 1]] <- list(
+        group = "specific",
+        osl_Bi_1 = list(
+          type = "rnorm",
+          mean = fun_dummy,
+          sd = fun_dummy),
+        osl_Bi_2 = list(
+          type = "rnorm",
+          value = fun_dummy))
+      
+      names(rule_book)[length(rule_book)] <- 
+        paste("osl_B",i, sep = "")
+      
+      names(rule_book[[length(rule_book)]]) <- 
+        c("group",
+          paste("osl_B",i, "_1", sep = ""),
+          paste("osl_B",i, "_2", sep = ""))
+    }
+    
+    ## append OSL parameters - Th
+    for(i in 1:5) {
+      
+      rule_book[[length(rule_book) + 1]] <- list(
+        group = "specific",
+        osl_Thi_1 = list(
+          type = "rnorm",
+          mean = fun_dummy,
+          sd = fun_dummy),
+        osl_Thi_2 = list(
+          type = "rnorm",
+          value = fun_dummy))
+      
+      names(rule_book)[length(rule_book)] <- 
+        paste("osl_Th",i, sep = "")
+      
+      names(rule_book[[length(rule_book)]]) <- 
+        c("group",
+          paste("osl_Th",i, "_1", sep = ""),
+          paste("osl_Th",i, "_2", sep = ""))
+    }
+    
+    ## append OSL parameters - E_th
+    for(i in 1:5) {
+      
+      rule_book[[length(rule_book) + 1]] <- list(
+        group = "specific",
+        osl_E_thi_1 = list(
+          type = "rnorm",
+          mean = fun_dummy,
+          sd = fun_dummy),
+        osl_E_thi_2 = list(
+          type = "rnorm",
+          value = fun_dummy))
+      
+      names(rule_book)[length(rule_book)] <- 
+        paste("osl_E_th",i, sep = "")
+      
+      names(rule_book[[length(rule_book)]]) <- 
+        c("group",
+          paste("osl_E_th",i, "_1", sep = ""),
+          paste("osl_E_th",i, "_2", sep = ""))
+    }
+    
+    rule_book$osl_R = list(
+      group = "specific",
+      osl_R_1 = list(
+        type = "exact",
+        value = fun_dummy),
+      element_Ca_2 = list(
+        type = "rnorm",
+        value = fun_dummy))
+    
+
+  }
+  
   ## return output ------------------------------------------------------------
   return(rule_book)
   
