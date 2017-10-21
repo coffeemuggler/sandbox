@@ -76,6 +76,19 @@ add_Rule <- function(
       
       names(rule_add)[i + 1] <- paste(name, i, sep = "_")
     }
+  }  else if(type == "runif") {
+    
+    rule_add = list(
+      group = group)
+    
+    for(i in 1:populations) {
+      
+      rule_add[[length(rule_add) + 1]] <- list(type = "runif",
+                                               min = fun_dummy,
+                                               max = fun_dummy)
+      
+      names(rule_add)[i + 1] <- paste(name, i, sep = "_")
+    }
   }
   
   ## append new rule
@@ -84,11 +97,14 @@ add_Rule <- function(
   ## remove first book entry
   book_body <- book
   book_body[[1]] <- NULL
+  
+  ## add name of new rule
+  names(book_body)[length(book_body)] <- name
 
   ## extract book types in raw format  
-  book_groups <- lapply(X = book_body, FUN = function(book) {
+  book_groups <- lapply(X = book_body, FUN = function(book_body) {
     
-    book$group
+    book_body$group
   })
   
   ## assign book types

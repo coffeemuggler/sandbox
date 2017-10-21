@@ -14,19 +14,10 @@
 #' aliquot (sample subset used for measurement), i.e., the result of 
 #' \code{make_Aliquot}.
 #' 
-#' @param dose_sequence \code{umeric} vector, doses in Gy applied to the  
-#' aliquot during each measurement step, according to the SAR protocol. See  
-#' documentation of \code{RLumModel::model_LuminescenceSignals} and 
-#' \code{Luminescence::analyse_SAR.CWOSL()} for further information.
+#' @param sequence \code{List}, Definition of the SAR protocol.
 #' 
-#' @param dose_test \code{Numeric} value, Test dose for SAR cycles in Gy.
-#' 
-#' @param preheat \code{Numeric} value, preheat temperature in Degree Celsius.
-#' 
-#' @param cutheat \code{Numeric} value, cutheat temperature in Degree Celsius.
-#' 
-#' @param oslheat \code{Numeric} value, temperature at which OSL is 
-#' measuered, in Degree Celsius.
+#' @param dose_rate \code{Numeric} value, Dose rate of the luminescence 
+#' reader, in Gy.
 #' 
 #' @return \code{RLum.Analysis} object. Equivalent of the import result for 
 #' a real world measurement file. This object can be evaluated by functions 
@@ -39,50 +30,6 @@
 #' \dontrun{
 #' 
 #' ## create dummy data set
-#' aliquot <- data.frame(comp_lum = rep(1, 100),
-#'                       N1 = runif(100, min = 1e12, max = 1e13),
-#'                       N2 = runif(100, min = 1e12, max = 1e13),
-#'                       N3 = runif(100, min = 1e12, max = 1e13),
-#'                       N4 = runif(100, min = 1e12, max = 1e13),
-#'                       E1 = rep(0, 100),
-#'                       E2 = rep(0, 100),
-#'                       E3 = rep(0, 100),
-#'                       E4 = rep(0, 100),
-#'                       s1 = rep(0, 100),
-#'                       s2 = rep(0, 100),
-#'                       s3 = rep(0, 100),
-#'                       s4 = rep(0, 100),
-#'                       A1 = rep(2e-8, 100),
-#'                       A2 = rep(2e-9, 100),
-#'                       A3 = rep(4e-9, 100),
-#'                       A4 = rep(1e-8, 100),
-#'                       B1 = rep(0, 100),
-#'                       B2 = rep(0, 100),
-#'                       B3 = rep(5e-11, 100),
-#'                       B4 = rep(4e-8, 100),
-#'                       K = rep(0, 100),
-#'                       model = rep("customized", 100),
-#'                       R = rep(1.7e15, 100))
-#'                       
-#' ## define dose sequence
-#' sequence <- c(0, 80, 140, 260, 320, 0, 80)
-#' 
-#' ## measure aliquot with CW OSL SAR protocol
-#' data <- measure_SAR_OSL(aliquot = aliquot,
-#'                         dose_sequence = sequence,
-#'                         dose_test = 20,
-#'                         preheat = 220,
-#'                         cutheat = 220,
-#'                         oslheat = 125)
-#'                         
-#' ## analyse measured data set
-#' results <- Luminescence::analyse_SAR.CWOSL(data,
-#'                                            signal.integral.min = 1,
-#'                                            signal.integral.max = 7,
-#'                                            background.integral.min = 301,
-#'                                            background.integral.max = 401,
-#'                                            fit.method = "EXP",
-#'                                            dose.points = sequence)
 #' 
 #' }
 #' 
@@ -91,127 +38,61 @@
 measure_SAR_OSL <- function(
   
   aliquot,
-  dose_sequence,
-  dose_test,
-  preheat,
-  cutheat,
-  oslheat
+  sequence,
+  dose_rate = 1
 ) {
   
   ## PART 1 - separate OSL components -----------------------------------------
   
-  ## extract luminescence components
-  components <- as.list(unique(aliquot$comp_lum))
+  ## collect model parameters
+  N <- colMeans(x = aliquot[,grepl(x = colnames(aliquot), 
+                                   pattern = "osl_N")])
   
-  ## collect model parameters for each component
-  model_luminescence <- lapply(X = components, FUN = function(X, aliquot) {
-    
-    x <- aliquot[aliquot$comp_lum == X,]
-    
-    N <- as.numeric(lapply(X = x[,grepl(x = names(x), 
-                                        pattern = "N",
-                                        fixed = TRUE)], FUN = function(x) {
-                                          
-                                          sum(x)
-                                        }))
-    
-    E <- as.numeric(lapply(X = x[,grepl(x = names(x), 
-                                        pattern = "E",
-                                        fixed = TRUE)], FUN = function(x) {
-                                          
-                                          unique(x)
-                                        }))
-    
-    s <- as.numeric(lapply(X = x[,grepl(x = names(x), 
-                                        pattern = "s",
-                                        fixed = TRUE)], FUN = function(x) {
-                                          
-                                          unique(x)
-                                        }))
-    
-    A <- as.numeric(lapply(X = x[,grepl(x = names(x), 
-                                        pattern = "A",
-                                        fixed = TRUE)], FUN = function(x) {
-                                          
-                                          unique(x)
-                                        }))
-    
-    B <- as.numeric(lapply(X = x[,grepl(x = names(x), 
-                                        pattern = "B",
-                                        fixed = TRUE)], FUN = function(x) {
-                                          
-                                          unique(x)
-                                        }))
-    
-    K <- unique(x$K)
-    
-    model <- as.character(unique(x$model))
-    
-    R <- unique(x$R)
-    
-    parameters <- list(N = N,
-                       E = E,
-                       s = s,
-                       A = A,
-                       B = B,
-                       K = K,
-                       model = model,
-                       R = R)
-    
-    return(parameters)
-  },
-  aliquot = aliquot)
+  En <- colMeans(x = aliquot[,grepl(x = colnames(aliquot), 
+                                   pattern = "osl_En")])
   
+  s <- colMeans(x = aliquot[,grepl(x = colnames(aliquot), 
+                                   pattern = "osl_s")])
+  
+  A <- colMeans(x = aliquot[,grepl(x = colnames(aliquot), 
+                                   pattern = "osl_A")])
+  
+  B <- colMeans(x = aliquot[,grepl(x = colnames(aliquot), 
+                                   pattern = "osl_B")])
+  
+  Th <- colMeans(x = aliquot[,grepl(x = colnames(aliquot), 
+                                   pattern = "osl_Th")])
+  
+  E_th <- colMeans(x = aliquot[,grepl(x = colnames(aliquot), 
+                                   pattern = "osl_E_th")])
+  
+  R <- mean(x = aliquot[,grepl(x = colnames(aliquot), 
+                                      pattern = "osl_R")])
+
+  parameters <- list(N = as.numeric(N),
+                     E = as.numeric(En),
+                     s = as.numeric(s),
+                     A = as.numeric(A),
+                     B = as.numeric(B),
+                     Th = as.numeric(Th),
+                     E_th = as.numeric(E_th),
+                     model = "customized",
+                     R = as.numeric(R))
+
+  ## calculate mean burial dose
+  burial_dose <- mean(aliquot$osl_doserate * aliquot$age)
+  
+  ## update sequence
+  sequence[[7]][2] <- burial_dose
+
   ## PART 2 - model luminescence ----------------------------------------------
-  
-  ## define OSL sequence
-  sequence <- list(
-    RegDose = dose_sequence,
-    TestDose = dose_test,
-    PH = preheat,
-    CH = cutheat,
-    OSL_temp = oslheat
-  )
-  
-  ## model luminsecence signals per component and sequence
-  osl <- lapply(X = model_luminescence, FUN = function(model_luminescence) {
-    
-    RLumModel::model_LuminescenceSignals(
-      sequence = sequence,
-      model = model_luminescence$model, 
-      own_parameters = model_luminescence,
-      own_state_parameters = c(0, 0, 0, 9.4e15),
-      plot = FALSE,
-      verbose = FALSE
-    )
-  })
-  
-  ## extract shine down curves
-  osl_rlum <- lapply(X = osl, FUN = function(osl) {
-    
-    i <- !grepl(x = names(osl), pattern = "conc.")
-    
-    return(osl[[i]])
-  })
-  
-  ## sum shine down curves
-  osl_sum <- osl_rlum[[1]]
-  
-  for(i in 1:length(osl_sum)) {
-    
-    counts <- lapply(X = osl_rlum, FUN = function(x, i) {
-      
-      x[[i]]@data[,2]
-    }, 
-    i = i)
-    
-    osl_sum[[i]]@data[,2] <- colSums(do.call(rbind, counts))
-  }
-  
-  ## build RLum.Analysis-object
-  osl_out <- Luminescence::set_RLum(records = osl_sum, 
-                                    class = "RLum.Analysis")
+  osl_model <- RLumModel::model_LuminescenceSignals(
+    sequence = sequence,
+    model = "customized",
+    own_parameters = parameters,
+    plot = FALSE,
+    verbose = FALSE)
   
   ## return function output
-  return(osl_out)
+  return(osl_model)
 }

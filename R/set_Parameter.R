@@ -60,12 +60,20 @@ set_Parameter <- function(
 
   ## rnorm definition
   if(type == "rnorm") {
-
+    
     parameter_out <- list(type = "rnorm",
                           mean = fun_dummy,
                           sd = fun_dummy)
   }
-
+  
+  ## runif definition
+  if(type == "runif") {
+    
+    parameter_out <- list(type = "runif",
+                          min = fun_dummy,
+                          max = fun_dummy)
+  }
+  
   ## extract book content
   book_content <- names(book)
 

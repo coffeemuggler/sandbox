@@ -4,26 +4,17 @@
 \alias{measure_SAR_OSL}
 \title{Measure an aliquot with the CW SAR OSL protocol}
 \usage{
-measure_SAR_OSL(aliquot, dose_sequence, dose_test, preheat, cutheat, oslheat)
+measure_SAR_OSL(aliquot, sequence, dose_rate = 1)
 }
 \arguments{
 \item{aliquot}{\code{Data frame}, a set of grains that are assigned to an 
 aliquot (sample subset used for measurement), i.e., the result of 
 \code{make_Aliquot}.}
 
-\item{dose_sequence}{\code{umeric} vector, doses in Gy applied to the
-aliquot during each measurement step, according to the SAR protocol. See  
-documentation of \code{RLumModel::model_LuminescenceSignals} and 
-\code{Luminescence::analyse_SAR.CWOSL()} for further information.}
+\item{sequence}{\code{List}, Definition of the SAR protocol.}
 
-\item{dose_test}{\code{Numeric} value, Test dose for SAR cycles in Gy.}
-
-\item{preheat}{\code{Numeric} value, preheat temperature in Degree Celsius.}
-
-\item{cutheat}{\code{Numeric} value, cutheat temperature in Degree Celsius.}
-
-\item{oslheat}{\code{Numeric} value, temperature at which OSL is 
-measuered, in Degree Celsius.}
+\item{dose_rate}{\code{Numeric} value, Dose rate of the luminescence 
+reader, in Gy.}
 }
 \value{
 \code{RLum.Analysis} object. Equivalent of the import result for 
@@ -47,50 +38,6 @@ photon count curves.
 \dontrun{
 
 ## create dummy data set
-aliquot <- data.frame(comp_lum = rep(1, 100),
-                      N1 = runif(100, min = 1e12, max = 1e13),
-                      N2 = runif(100, min = 1e12, max = 1e13),
-                      N3 = runif(100, min = 1e12, max = 1e13),
-                      N4 = runif(100, min = 1e12, max = 1e13),
-                      E1 = rep(0, 100),
-                      E2 = rep(0, 100),
-                      E3 = rep(0, 100),
-                      E4 = rep(0, 100),
-                      s1 = rep(0, 100),
-                      s2 = rep(0, 100),
-                      s3 = rep(0, 100),
-                      s4 = rep(0, 100),
-                      A1 = rep(2e-8, 100),
-                      A2 = rep(2e-9, 100),
-                      A3 = rep(4e-9, 100),
-                      A4 = rep(1e-8, 100),
-                      B1 = rep(0, 100),
-                      B2 = rep(0, 100),
-                      B3 = rep(5e-11, 100),
-                      B4 = rep(4e-8, 100),
-                      K = rep(0, 100),
-                      model = rep("customized", 100),
-                      R = rep(1.7e15, 100))
-                      
-## define dose sequence
-sequence <- c(0, 80, 140, 260, 320, 0, 80)
-
-## measure aliquot with CW OSL SAR protocol
-data <- measure_SAR_OSL(aliquot = aliquot,
-                        dose_sequence = sequence,
-                        dose_test = 20,
-                        preheat = 220,
-                        cutheat = 220,
-                        oslheat = 125)
-                        
-## analyse measured data set
-results <- Luminescence::analyse_SAR.CWOSL(data,
-                                           signal.integral.min = 1,
-                                           signal.integral.max = 7,
-                                           background.integral.min = 301,
-                                           background.integral.max = 401,
-                                           fit.method = "EXP",
-                                           dose.points = sequence)
 
 }
 

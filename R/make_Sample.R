@@ -190,6 +190,14 @@ make_Sample <- function(
         grains[,i + 2] <- rnorm(n = nrow(grains),
                                 mean = book[[i]][[2]]$mean(x = grains$depth),
                                 sd = sd_pre)
+      }  else if(book[[i]][[2]]$type == "runif") {
+        
+        min_pre <- book[[i]][[2]]$min(x = grains$depth)
+        max_pre <- book[[i]][[2]]$max(x = grains$depth)
+        
+        grains[,i + 2] <- runif(n = nrow(grains),
+                                min = min_pre,
+                                max = max_pre)
       }
 
     } else {
@@ -213,6 +221,13 @@ make_Sample <- function(
             rnorm(n = length(ID_population_j),
                   mean = book[[i]][[j + 1]]$mean(x = grains$depth),
                   sd = abs(book[[i]][[j + 1]]$sd(x = grains$depth)))
+          
+        }  else if(book[[i]][[2]]$type == "runif") {
+          
+          grains[ID_population_j,i + 2] <-
+            runif(n = length(ID_population_j),
+                  min = book[[i]][[j + 1]]$min(x = grains$depth),
+                  max = book[[i]][[j + 1]]$max(x = grains$depth))
         }
       }
     }

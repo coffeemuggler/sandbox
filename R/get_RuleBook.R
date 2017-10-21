@@ -41,9 +41,6 @@ get_RuleBook <- function(
         group = "specific",
         population_1 = list(
           type = "exact",
-          value = fun_dummy),
-        population_2 = list(
-          type = "exact",
           value = fun_dummy)),
       
       grainsize = list(
@@ -51,8 +48,11 @@ get_RuleBook <- function(
         grainsize_1 = list(
           type = "rnorm",
           mean = fun_dummy,
-          sd = fun_dummy),
-        grainsize_2 = list(
+          sd = fun_dummy)),
+      
+      packing = list(
+        group = "specific",
+        grainsize_1 = list(
           type = "rnorm",
           mean = fun_dummy,
           sd = fun_dummy)),
@@ -60,10 +60,6 @@ get_RuleBook <- function(
       density = list(
         group = "specific",
         density_1 = list(
-          type = "rnorm",
-          mean = fun_dummy,
-          sd = fun_dummy),
-        density_2 = list(
           type = "rnorm",
           mean = fun_dummy,
           sd = fun_dummy)))

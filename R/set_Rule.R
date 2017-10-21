@@ -101,9 +101,16 @@ type = "spline"
 
       for(j in 1:length(value[[i]])) {
 
+        # ## update book_edit object
+        # book_edit[[1]][[i + 1]][[j + 1]] <- splinefun(x = depth[[i]][[j]],
+        #                                 y = value[[i]][[j]])
+        
         ## update book_edit object
-        book_edit[[1]][[i + 1]][[j + 1]] <- splinefun(x = depth[[i]][[j]],
-                                        y = value[[i]][[j]])
+        
+        ## CHANGED, DEPTH LIST HAS NOT SUB LIST I THINK!
+        book_edit[[1]][[i + 1]][[j + 1]] <- splinefun(x = depth[[1]],
+                                                      y = value[[i]][[j]])
+        
       }
     }
   }
