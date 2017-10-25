@@ -4,11 +4,16 @@
 \alias{get_RuleBook}
 \title{Get one of a series of predefined rule books for a model run.}
 \usage{
-get_RuleBook(book = "empty")
+get_RuleBook(book = "empty", osl = NULL)
 }
 \arguments{
-\item{book}{\code{Character} scalar, name of the rule book to be generated.
+\item{book}{\code{Character} value, name of the rule book to be generated.
 One out of \code{"empty"}, default is \code{"empty"}.}
+
+\item{osl}{\code{Character} value, optional keyword for an OSL (optical 
+stimulated luminescence) model of choice. Must be one of the available 
+models from the R package \code{RLumModel}. See details for full list of 
+available models.}
 }
 \value{
 A list object with all rules for a model run.
@@ -16,6 +21,15 @@ A list object with all rules for a model run.
 \description{
 The function returns a prebuilt model rule book, i.e., a combination of
 model parameters and rules.
+}
+\details{
+It is possibe to generate OSL-tailored rule books. For this, the 
+argument \code{osl} must be provided with a keyword defining one of the 
+OSL models from the R package \code{RLumModel}: \code{"Bailey2001"}, 
+\code{"Bailey2004"}, \code{"Pagonis2008"}, \code{"Pagonis2007"}, 
+\code{"Bailey2002"} and \code{"Friedrich2017"}. The model parameters will 
+be appended to the rule book entries and defined by mean and standard 
+deviation.
 }
 \examples{
 

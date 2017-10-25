@@ -49,7 +49,7 @@ measure_SAR_OSL <- function(
                                    pattern = "osl_N")])
   
   En <- colMeans(x = aliquot[,grepl(x = colnames(aliquot), 
-                                   pattern = "osl_En")])
+                                   pattern = "osl_E")])
   
   s <- colMeans(x = aliquot[,grepl(x = colnames(aliquot), 
                                    pattern = "osl_s")])

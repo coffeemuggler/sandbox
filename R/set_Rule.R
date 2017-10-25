@@ -4,9 +4,19 @@
 #' The transfer function uses different interpolation functions to create a
 #' continuous representation of a parameter value with depth.
 #'
+#' To assign standard OSL model parameters, one of the available keywords of 
+#' the R package \code{RLumModel} can be used. The function will then set 
+#' all rules of the rule book with the standard values associated with these 
+#' models, and setting the standard deviation to zero. The keyword can be 
+#' one out of \code{"Bailey2001"}, \code{"Bailey2004"}, \code{"Pagonis2008"}, 
+#' \code{"Pagonis2007"}, \code{"Bailey2002"} and \code{"Friedrich2017"}. 
+#' This will fill the rule book with the standard parameters independent of 
+#' depth. Note that a dose rate (parameter name \code{osl_doserate}) needs to 
+#' be set separately!
 #'
 #' @param book \code{List} object, rule book to be edited.
-#' @param parameter \code{Character} scalar, parameter name to be edited.
+#' @param parameter \code{Character} scalar, parameter name to be edited. 
+#'        Can also be the keyword for an OSL model. See details.
 #' @param value \code{Numeric} list, specifying the
 #'        parameter values at the corresponding depth points. If a parameter
 #'        is defined by more than one argument (e.g., mean and standard
@@ -47,82 +57,147 @@ type = "spline"
 
   ## create function ----------------------------------------------------------
 
-  ## extract book content
-  book_content <- names(book)
-
-  ## isolate chapter to edit
-  book_edit <- book[book_content == parameter]
-
-  ## adjust parameter length
-  n_parameters <- length(book_edit[[1]]) - 1
-
-  if(n_parameters != length(value)) {
-
-    book_edit_new <- vector(mode = "list",
-                            length = length(value) + 1)
-
-    book_edit_new[[1]] <- book_edit[[1]][[1]]
-
-    for(i in 2:length(book_edit_new)) {
-
-      book_edit_new[[i]] <- book_edit[[1]][[2]]
+  ## defined keywords
+  keywords <- c("Bailey2001", 
+                "Bailey2004", 
+                "Pagonis2008", 
+                "Pagonis2007", 
+                "Bailey2002", 
+                "Friedrich2017")
+  
+  ## option 1 - parameter name specified
+  if(parameter%in%keywords == FALSE) {
+    
+    ## extract book content
+    book_content <- names(book)
+    
+    ## isolate chapter to edit
+    book_edit <- book[book_content == parameter]
+    
+    ## adjust parameter length
+    n_parameters <- length(book_edit[[1]]) - 1
+    
+    if(n_parameters != length(value)) {
+      
+      book_edit_new <- vector(mode = "list",
+                              length = length(value) + 1)
+      
+      book_edit_new[[1]] <- book_edit[[1]][[1]]
+      
+      for(i in 2:length(book_edit_new)) {
+        
+        book_edit_new[[i]] <- book_edit[[1]][[2]]
+      }
+      
+      names(book_edit_new) <- c(names(book_edit[[1]])[1],
+                                paste(names(book_edit),
+                                      1:length(value),
+                                      sep = "_"))
+      
+      book_edit[[1]] <- book_edit_new
     }
-
-    names(book_edit_new) <- c(names(book_edit[[1]])[1],
-                              paste(names(book_edit),
-                                    1:length(value),
-                                    sep = "_"))
-
-    book_edit[[1]] <- book_edit_new
-  }
-
-  ## infer group name
-  group <- book_edit[[1]]$group
-
- if(group == "general") {
-
-   ## define rule for general parameter type
-
-    ## spline interpolaton
-    if(type == "spline") {
-
+    
+    ## infer group name
+    group <- book_edit[[1]]$group
+    
+    if(group == "general") {
+      
+      ## define rule for general parameter type
+      
+      ## spline interpolaton
+      if(type == "spline") {
+        
+        for(i in 1:length(value)) {
+          
+          ## update book_edit object
+          book_edit[[1]][[2]][[i + 1]] <- splinefun(x = depth[[i]],
+                                                    y = value[[i]])
+        }
+      }
+      
+    } else if(group == "specific") {
+      
+      ## define rule for specific parameter type
       for(i in 1:length(value)) {
-
-        ## update book_edit object
-        book_edit[[1]][[2]][[i + 1]] <- splinefun(x = depth[[i]],
-                                                  y = value[[i]])
+        
+        for(j in 1:length(value[[i]])) {
+          
+          # ## update book_edit object
+          # book_edit[[1]][[i + 1]][[j + 1]] <- splinefun(x = depth[[i]][[j]],
+          #                                 y = value[[i]][[j]])
+          
+          ## update book_edit object
+          
+          ## CHANGED, DEPTH LIST HAS NOT SUB LIST I THINK! 2017-10-18
+          book_edit[[1]][[i + 1]][[j + 1]] <- splinefun(x = depth[[1]],
+                                                        y = value[[i]][[j]])
+          
+        }
       }
     }
-
-  } else if(group == "specific") {
-
-    ## define rule for specific parameter type
-    for(i in 1:length(value)) {
-
-      for(j in 1:length(value[[i]])) {
-
-        # ## update book_edit object
-        # book_edit[[1]][[i + 1]][[j + 1]] <- splinefun(x = depth[[i]][[j]],
-        #                                 y = value[[i]][[j]])
-        
-        ## update book_edit object
-        
-        ## CHANGED, DEPTH LIST HAS NOT SUB LIST I THINK!
-        book_edit[[1]][[i + 1]][[j + 1]] <- splinefun(x = depth[[1]],
-                                                      y = value[[i]][[j]])
-        
-      }
+    
+    ## return output ------------------------------------------------------------
+    if(output_flag == TRUE) {
+      
+      ## update input book
+      book[book_content == parameter] <- book_edit
+      
+      ## return output
+      return(book)
+    }
+    
+  } else {
+    
+    ## assign keyword book
+    book_key <- book
+    
+    ## get OSL parameters of keyword model
+    osl_parameters <- RLumModel:::.set_pars(model = parameter)
+    
+    ## reduce to parameters of interest
+    osl_parameters <- osl_parameters[1:7]
+    
+    ## create corresponding parameter names
+    osl_names <- osl_parameters
+    
+    for(i in 1:length(osl_names)){
+      
+      osl_names[[i]] <- 
+        paste("osl_", rep(x = names(osl_parameters)[i], 
+                          times = length(osl_parameters[[i]])),
+              1:length(osl_parameters[[i]]),
+              sep = "")
+    }
+    
+    ## convert lists to vectors
+    osl_names <- c(as.character(unlist(osl_names)), "osl_R")
+    osl_parameters <- c(as.numeric(unlist(osl_parameters)), 5e7)
+  
+    ## update rule book with parameters
+    for(i in 1:length(osl_names)) {
+      
+      value_i <- lapply(X = 1:(length(book_key$population) - 1), 
+                        FUN = function(x, osl_parameters, depth) {
+                          
+                          list(mean = rep(x = osl_parameters[i], 
+                                          times = length(depth[[1]])),
+                               sd = rep(x = 0, 
+                                        times = length(depth[[1]])))
+                        }, osl_parameters, depth)
+      
+      
+      book_key <- set_Rule(book = book_key, 
+               parameter = osl_names[i],
+               value = value_i, 
+               depth = depth)
+    }
+    
+    ## return output ------------------------------------------------------------
+    if(output_flag == TRUE) {
+      
+      ## return output
+      return(book_key)
     }
   }
 
-
-  ## return output ------------------------------------------------------------
-  if(output_flag == TRUE) {
-
-    ## update input book
-    book[book_content == parameter] <- book_edit
-
-    ## return output
-    return(book)
-  }
 }

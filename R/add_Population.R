@@ -39,7 +39,10 @@ add_Population <- function(
       
       ## extract base name of rule
       name_base <- strsplit(x = names(book_body)[2], 
-                            split = "_")[[1]][1]
+                            split = "_")[[1]]
+      
+      name_base <- paste(name_base[-length(name_base)], 
+                         collapse = "_")
       
       ## append all populations
       for(i in 1:populations) {
