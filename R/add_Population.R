@@ -14,7 +14,7 @@
 #' @examples
 #'
 #' ## create simple true age-depth-relationship
-#' book_1 <- get_RuleBook()
+#' book_1 <- get_RuleBook(book = "empty")
 #' 
 #' book_2 <- add_Population(book = book_1, 
 #'                          populations = 1)
@@ -66,7 +66,7 @@ add_Population <- function(
   }, populations)
   
   ## amalgamate book parts
-  book_new <- c(book[[1]], 
+  book_new <- c(book[1], 
                 book_body)
   
   ## return output
