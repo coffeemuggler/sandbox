@@ -6,7 +6,7 @@
 #'
 #' @param sample \code{Data frame} sample object to be sieved.
 #' 
-#' @param interval \code{Numeric} vector, sieve interval.
+#' @param interval \code{Numeric} vector, sieve interval, in phi units.
 #' 
 #' @return \code{Data frame} with grains that are within the sieve interval.
 #' 

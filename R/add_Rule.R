@@ -12,8 +12,12 @@
 #' \code{"specific"} (relevant for a single grain).
 #' 
 #' @param type \code{Character} value, generic type of the rule. One out of 
-#' \code{"rnorm"} (definition by mean and standard deviation, changing with 
-#' depth) and \code{"exact"} (defined by exact value, changing with depth).
+#' \code{"exact"} (defined by exact value, changing with depth), 
+#' \code{"normal"} (normal distribution, defined by mean and standard 
+#' deviation, changing with depth), \code{"uniform"} (defined by min and 
+#' max value, changing with depth) and \code{"gamma"} (gamma distribution, 
+#' defined by shape and scale parameter and constant offset, all changing 
+#' with depth)
 #' 
 #' @param populations \code{Numeric} value, number of populations to create.
 #' The number of populations to add should match the existing number of 
@@ -31,7 +35,7 @@
 #' book_2 <- add_Rule(book = book_1, 
 #'                           name = "extrarule", 
 #'                           group = "general", 
-#'                           type = "rnorm", 
+#'                           type = "normal", 
 #'                           populations = 1)
 #'                           
 #' @export add_Rule
@@ -63,29 +67,43 @@ add_Rule <- function(
       names(rule_add)[i + 1] <- paste(name, i, sep = "_")
     }
 
-  } else if(type == "rnorm") {
+  } else if(type == "normal") {
     
     rule_add = list(
       group = group)
     
     for(i in 1:populations) {
       
-      rule_add[[length(rule_add) + 1]] <- list(type = "rnorm",
+      rule_add[[length(rule_add) + 1]] <- list(type = "normal",
                                                mean = fun_dummy,
                                                sd = fun_dummy)
       
       names(rule_add)[i + 1] <- paste(name, i, sep = "_")
     }
-  }  else if(type == "runif") {
+  } else if(type == "uniform") {
     
     rule_add = list(
       group = group)
     
     for(i in 1:populations) {
       
-      rule_add[[length(rule_add) + 1]] <- list(type = "runif",
+      rule_add[[length(rule_add) + 1]] <- list(type = "uniform",
                                                min = fun_dummy,
                                                max = fun_dummy)
+      
+      names(rule_add)[i + 1] <- paste(name, i, sep = "_")
+    }
+  } else if(type == "gamma") {
+    
+    rule_add = list(
+      group = group)
+    
+    for(i in 1:populations) {
+      
+      rule_add[[length(rule_add) + 1]] <- list(type = "gamma",
+                                               shape = fun_dummy,
+                                               scale = fun_dummy,
+                                               offset = fun_dummy)
       
       names(rule_add)[i + 1] <- paste(name, i, sep = "_")
     }

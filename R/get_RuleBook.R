@@ -18,6 +18,7 @@
 #' stimulated luminescence) model of choice. Must be one of the available 
 #' models from the R package \code{RLumModel}. See details for full list of 
 #' available models.
+#' 
 #' @return A list object with all rules for a model run.
 #' 
 #' @author Michael Dietze
@@ -61,21 +62,21 @@ get_RuleBook <- function(
       grainsize = list(
         group = "specific",
         grainsize_1 = list(
-          type = "rnorm",
+          type = "normal",
           mean = fun_dummy,
           sd = fun_dummy)),
       
       packing = list(
         group = "specific",
         packing_1 = list(
-          type = "rnorm",
+          type = "normal",
           mean = fun_dummy,
           sd = fun_dummy)),
       
       density = list(
         group = "specific",
         density_1 = list(
-          type = "rnorm",
+          type = "normal",
           mean = fun_dummy,
           sd = fun_dummy)))
 
@@ -105,7 +106,7 @@ get_RuleBook <- function(
       rule_book <- add_Rule(book = rule_book, 
                          name = osl_parameters[i], 
                          group = "specific",
-                         type = "rnorm", 
+                         type = "normal", 
                          populations = 1)
     }
   }

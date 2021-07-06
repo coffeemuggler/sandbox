@@ -5,6 +5,19 @@
 #' distribution function. Each parameter of the distribution function can be
 #' changed through time using \code{set_Rule}.
 #'
+#' @details The following parameter types are available:
+#' * \code{exact}: parameter does not vary at all. No additional 
+#' parameters needed except for vector \code{value}, defining the 
+#' constant values for corresponding depths.
+#' * \code{uniform}: parameter varies following a uniform distribution. 
+#' The following additional parameter vectors are required: \code{min} 
+#' (minimum) and \code{max} (maximum)
+#' * \code{normal}: parameter varies following a normal distribution,
+#' which is defined by \code{mean} (mean value) and \code{sd} (standard
+#' deviation)
+#' * \code{gamma}: parameter varies following a gamma distribution, 
+#' defined by \code{shape} (shape parameter), \code{scale} (scale 
+#' parameter) and offset (defining constant offset of values)
 #'
 #' @param book \code{list} object, rule book to be edited.
 #' 
@@ -14,7 +27,7 @@
 #'        
 #' @param type \code{Character} scalar, keyword defining the distribution
 #'        function used to describe the parameter. See details for available
-#'        keywords, default is "constant".
+#'        keywords, default is "exact".
 #'        
 #' @return A list object.
 #' 
@@ -25,7 +38,7 @@
 #' ## get empty rule book
 #' book_1 <- get_RuleBook(book = "empty")
 #'
-#' ## set dose rate parameterisation from default to "rnorm"
+#' ## set density from default "normal" to "exact"
 #' book_2 <- set_Parameter(book = book_1,
 #'                         parameter = "density",
 #'                         type = "exact")
@@ -59,19 +72,28 @@ set_Parameter <- function(
   }
 
   ## rnorm definition
-  if(type == "rnorm") {
+  if(type == "normal") {
     
-    parameter_out <- list(type = "rnorm",
+    parameter_out <- list(type = "normal",
                           mean = fun_dummy,
                           sd = fun_dummy)
   }
   
   ## runif definition
-  if(type == "runif") {
+  if(type == "uniform") {
     
-    parameter_out <- list(type = "runif",
+    parameter_out <- list(type = "uniform",
                           min = fun_dummy,
                           max = fun_dummy)
+  }
+  
+  ## runif definition
+  if(type == "gamma") {
+    
+    parameter_out <- list(type = "gamma",
+                          shape = fun_dummy,
+                          scale = fun_dummy,
+                          offset = fun_dummy)
   }
   
   ## extract book content

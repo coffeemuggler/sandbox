@@ -14,7 +14,7 @@
 #' @author Michael Dietze
 #' @keywords package
 #' @import EMMAgeo
-#' @importFrom stats rnorm runif splinefun
+#' @importFrom stats rnorm runif rgamma splinefun
 NULL
 
 #' example data

@@ -15,7 +15,7 @@ parameters can be described by more than one function, see details.}
 
 \item{type}{\code{Character} scalar, keyword defining the distribution
 function used to describe the parameter. See details for available
-keywords, default is "constant".}
+keywords, default is "exact".}
 }
 \value{
 A list object.
@@ -26,12 +26,27 @@ virtual grains. A parameter is defined in a probabilistic way, as parametric
 distribution function. Each parameter of the distribution function can be
 changed through time using \code{set_Rule}.
 }
+\details{
+The following parameter types are available:
+* \code{exact}: parameter does not vary at all. No additional 
+parameters needed except for vector \code{value}, defining the 
+constant values for corresponding depths.
+* \code{uniform}: parameter varies following a uniform distribution. 
+The following additional parameter vectors are required: \code{min} 
+(minimum) and \code{max} (maximum)
+* \code{normal}: parameter varies following a normal distribution,
+which is defined by \code{mean} (mean value) and \code{sd} (standard
+deviation)
+* \code{gamma}: parameter varies following a gamma distribution, 
+defined by \code{shape} (shape parameter), \code{scale} (scale 
+parameter) and offset (defining constant offset of values)
+}
 \examples{
 
 ## get empty rule book
 book_1 <- get_RuleBook(book = "empty")
 
-## set dose rate parameterisation from default to "rnorm"
+## set density from default "normal" to "exact"
 book_2 <- set_Parameter(book = book_1,
                         parameter = "density",
                         type = "exact")

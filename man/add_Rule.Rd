@@ -16,8 +16,12 @@ out of \code{"general"} (covering the sediment section properties) and
 \code{"specific"} (relevant for a single grain).}
 
 \item{type}{\code{Character} value, generic type of the rule. One out of 
-\code{"rnorm"} (definition by mean and standard deviation, changing with 
-depth) and \code{"exact"} (defined by exact value, changing with depth).}
+\code{"exact"} (defined by exact value, changing with depth), 
+\code{"normal"} (normal distribution, defined by mean and standard 
+deviation, changing with depth), \code{"uniform"} (defined by min and 
+max value, changing with depth) and \code{"gamma"} (gamma distribution, 
+defined by shape and scale parameter and constant offset, all changing 
+with depth)}
 
 \item{populations}{\code{Numeric} value, number of populations to create.
 The number of populations to add should match the existing number of 
@@ -38,7 +42,7 @@ book_1 <- get_RuleBook()
 book_2 <- add_Rule(book = book_1, 
                           name = "extrarule", 
                           group = "general", 
-                          type = "rnorm", 
+                          type = "normal", 
                           populations = 1)
                           
 }

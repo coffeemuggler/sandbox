@@ -4,7 +4,17 @@
 \alias{make_Sample}
 \title{Create a virtual sample.}
 \usage{
-make_Sample(book, depth, geometry = "cuboid", radius, height, width, length)
+make_Sample(
+  book,
+  depth,
+  geometry = "cuboid",
+  radius,
+  height,
+  width,
+  length,
+  slice = TRUE,
+  force = FALSE
+)
 }
 \arguments{
 \item{book}{\code{list} object, RuleBook to be used.}
@@ -22,6 +32,14 @@ default is \code{"cuboid"}.}
 \item{width}{\code{Numeric} scalar, width of the cuboid (m).}
 
 \item{length}{\code{Numeric} scalar, length of the cuboid or cylinder (m).}
+
+\item{slice}{\code{Logical} scalar, option to sample in repeated slices of 
+10^6 grains until the required sample size is reached. Useful to avoid 
+memory issues for large numbers of grains per sample volume.}
+
+\item{force}{\code{Logcial} scalar, option to override the default 
+maximum number of 10^7 grains per sample, set to avoid memory problems 
+of the computer.}
 }
 \value{
 A list object.
@@ -32,7 +50,7 @@ sample geometry and depth, using the information from a rule book.
 }
 \examples{
 
-## To be done
+## To be done today
 
 }
 \author{

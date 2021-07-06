@@ -9,7 +9,7 @@ prepare_Sieving(sample, interval)
 \arguments{
 \item{sample}{\code{Data frame} sample object to be sieved.}
 
-\item{interval}{\code{Numeric} vector, sieve interval.}
+\item{interval}{\code{Numeric} vector, sieve interval, in phi units.}
 }
 \value{
 \code{Data frame} with grains that are within the sieve interval.
