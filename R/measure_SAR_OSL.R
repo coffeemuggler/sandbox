@@ -39,7 +39,7 @@ measure_SAR_OSL <- function(
   
   aliquot,
   sequence,
-  dose_rate = 1
+  dose_rate = 0.1
 ) {
   
   ## PART 1 - separate OSL components -----------------------------------------
@@ -49,7 +49,9 @@ measure_SAR_OSL <- function(
                                    pattern = "osl_N")])
   
   En <- colMeans(x = aliquot[,grepl(x = colnames(aliquot), 
-                                   pattern = "osl_E")])
+                                    pattern = "osl_E") & 
+                               !grepl(x = colnames(aliquot), 
+                                      pattern = "osl_E_th")])
   
   s <- colMeans(x = aliquot[,grepl(x = colnames(aliquot), 
                                    pattern = "osl_s")])
@@ -61,14 +63,14 @@ measure_SAR_OSL <- function(
                                    pattern = "osl_B")])
   
   Th <- colMeans(x = aliquot[,grepl(x = colnames(aliquot), 
-                                   pattern = "osl_Th")])
+                                    pattern = "osl_Th")])
   
   E_th <- colMeans(x = aliquot[,grepl(x = colnames(aliquot), 
-                                   pattern = "osl_E_th")])
+                                      pattern = "osl_E_th")])
   
   R <- mean(x = aliquot[,grepl(x = colnames(aliquot), 
-                                      pattern = "osl_R")])
-
+                               pattern = "osl_R")])
+  
   parameters <- list(N = as.numeric(N),
                      E = as.numeric(En),
                      s = as.numeric(s),
@@ -78,20 +80,22 @@ measure_SAR_OSL <- function(
                      E_th = as.numeric(E_th),
                      model = "customized",
                      R = as.numeric(R))
-
+  
   ## calculate mean burial dose
   burial_dose <- mean(aliquot$osl_doserate * aliquot$age)
   
   ## update sequence
-  sequence[[7]][2] <- burial_dose
-
+  sequence$Irr_2recover <- burial_dose
+  
   ## PART 2 - model luminescence ----------------------------------------------
   osl_model <- RLumModel::model_LuminescenceSignals(
-    sequence = sequence,
     model = "customized",
+    sequence = sequence, 
+    lab.dose_rate = dose_rate,
     own_parameters = parameters,
     plot = FALSE,
-    verbose = FALSE)
+    verbose = FALSE, 
+    simulate_sample_history = TRUE)
   
   ## return function output
   return(osl_model)

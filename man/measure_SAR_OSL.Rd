@@ -4,7 +4,7 @@
 \alias{measure_SAR_OSL}
 \title{Measure an aliquot with the CW SAR OSL protocol}
 \usage{
-measure_SAR_OSL(aliquot, sequence, dose_rate = 1)
+measure_SAR_OSL(aliquot, sequence, dose_rate = 0.1)
 }
 \arguments{
 \item{aliquot}{\code{Data frame}, a set of grains that are assigned to an 
