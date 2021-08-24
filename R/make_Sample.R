@@ -273,34 +273,75 @@ make_Sample <- function(
       
       if(book[[i]][[2]]$type == "exact") {
         
-        grains[,i + 2] <- book[[i]][[2]][[2]](x = grains$d_sample)
+        x_out <- try(book[[i]][[2]][[2]](x = grains$d_sample), 
+                     silent = TRUE)
+        
+        if(class(x_out[1]) == "try-error") {
+          
+          x_out <- rep(NA, nrow(grains))
+        }
+        
+        grains[,i + 2] <- x_out
         
       } else if(book[[i]][[2]]$type == "normal") {
         
-        sd_pre <- book[[i]][[2]]$sd(x = grains$d_sample)
-        sd_pre[sd_pre < 0] <- 0
+        sd_pre <- try(book[[i]][[2]]$sd(x = grains$d_sample),
+                      silent = TRUE)
         
-        grains[,i + 2] <- stats::rnorm(n = nrow(grains),
-                                       mean = book[[i]][[2]]$mean(
-                                         x = grains$d_sample),
-                                       sd = sd_pre)
+        try(sd_pre[sd_pre < 0] <- 0, silent = TRUE)
+        
+        x_out <- try(stats::rnorm(n = nrow(grains),
+                                  mean = book[[i]][[2]]$mean(
+                                    x = grains$d_sample),
+                                  sd = sd_pre), 
+                     silent = TRUE)
+        
+        if(class(x_out[1]) == "try-error") {
+          
+          x_out <- rep(NA, nrow(grains))
+        }
+        
+        grains[,i + 2] <- x_out
+        
       }  else if(book[[i]][[2]]$type == "uniform") {
         
-        min_pre <- book[[i]][[2]]$min(x = grains$d_sample)
-        max_pre <- book[[i]][[2]]$max(x = grains$d_sample)
+        min_pre <- try(book[[i]][[2]]$min(x = grains$d_sample),
+                       silent = TRUE)
+        max_pre <- try(book[[i]][[2]]$max(x = grains$d_sample),
+                       silent = TRUE)
         
-        grains[,i + 2] <- stats::runif(n = nrow(grains),
-                                       min = min_pre,
-                                       max = max_pre)
+        x_out <- try(stats::runif(n = nrow(grains),
+                                  min = min_pre,
+                                  max = max_pre), 
+                     silent = TRUE)
+        
+        if(class(x_out[1]) == "try-error") {
+          
+          x_out <- rep(NA, nrow(grains))
+        }
+        
+        grains[,i + 2] <- x_out
+        
       } else if(book[[i]][[2]]$type == "gamma") {
         
-        shape_pre <- book[[i]][[2]]$min(x = grains$d_sample)
-        scale_pre <- book[[i]][[2]]$max(x = grains$d_sample)
-        offset_pre <- book[[i]][[2]]$max(x = grains$d_sample)
+        shape_pre <- try(book[[i]][[2]]$shape(x = grains$d_sample),
+                         silent = TRUE)
+        scale_pre <- try(book[[i]][[2]]$scale(x = grains$d_sample),
+                         silent = TRUE)
+        offset_pre <- try(book[[i]][[2]]$offset(x = grains$d_sample),
+                          silent = TRUE)
         
-        grains[,i + 2] <- stats::rgamma(n = nrow(grains),
-                                        shape = shape_pre,
-                                        scale = scale_pre) + offset_pre
+        x_out <- try(stats::rgamma(n = nrow(grains),
+                                   shape = shape_pre,
+                                   scale = scale_pre) + offset_pre,
+                     silent = TRUE)
+        
+        if(class(x_out[1]) == "try-error") {
+          
+          x_out <- rep(NA, nrow(grains))
+        }
+        
+        grains[,i + 2] <- x_out
       }
       
     } else {
@@ -315,31 +356,64 @@ make_Sample <- function(
         
         if(book[[i]][[2]]$type == "exact") {
           
-          grains[ID_population_j,i + 2] <-
-            book[[i]][[j + 1]]$value(x = grains$d_sample[ID_population_j])
+          x_out <- try(book[[i]][[j + 1]]$value(
+            x = grains$d_sample[ID_population_j]),
+            silent = TRUE)
+          
+          if(class(x_out[1]) == "try-error") {
+            
+            x_out <- rep(NA, nrow(grains))
+          }
+
+          grains[ID_population_j,i + 2] <- x_out
           
         } else if(book[[i]][[2]]$type == "normal") {
           
-          grains[ID_population_j,i + 2] <-
+          x_out <- try(
             stats::rnorm(n = length(ID_population_j),
                          mean = book[[i]][[j + 1]]$mean(x = grains$d_sample),
-                         sd = abs(book[[i]][[j + 1]]$sd(x = grains$d_sample)))
+                         sd = abs(book[[i]][[j + 1]]$sd(x = grains$d_sample))),
+            silent = TRUE)
+          
+          if(class(x_out[1]) == "try-error") {
+            
+            x_out <- rep(NA, nrow(grains))
+          }
+          
+          grains[ID_population_j,i + 2] <- x_out
+            
           
         } else if(book[[i]][[2]]$type == "uniform") {
           
-          grains[ID_population_j,i + 2] <-
+          x_out <- try(
             stats::runif(n = length(ID_population_j),
                          min = book[[i]][[j + 1]]$min(x = grains$d_sample),
-                         max = book[[i]][[j + 1]]$max(x = grains$d_sample))
+                         max = book[[i]][[j + 1]]$max(x = grains$d_sample)),
+            silent = TRUE)
+          
+          if(class(x_out[1]) == "try-error") {
+            
+            x_out <- rep(NA, nrow(grains))
+          }
+          
+          grains[ID_population_j,i + 2] <- x_out
           
         } else if(book[[i]][[2]]$type == "gamma") {
           
-          grains[ID_population_j,i + 2] <-
+          x_out <- try(
             stats::rgamma(
               n = length(ID_population_j),
               shape = book[[i]][[j + 1]]$shape(x = grains$d_sample),
               scale = book[[i]][[j + 1]]$scale(x = grains$d_sample)) +
-            book[[i]][[j + 1]]$offset(x = grains$d_sample)
+              book[[i]][[j + 1]]$offset(x = grains$d_sample),
+            silent = TRUE)
+          
+          if(class(x_out[1]) == "try-error") {
+            
+            x_out <- rep(NA, nrow(grains))
+          }
+          
+          grains[ID_population_j,i + 2] <- x_out
         }
       }
     }
