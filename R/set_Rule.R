@@ -54,7 +54,7 @@ type = "spline"
 
     warning("Interpolation method unavailable. Spline is used!")
   }
-
+  
   ## create function ----------------------------------------------------------
 
   ## defined keywords
@@ -73,6 +73,17 @@ type = "spline"
     
     ## isolate chapter to edit
     book_edit <- book[book_content == parameter]
+    
+    ## account for errors
+    if(length(book_edit) == 0) {
+      
+      stop("Parameter name not present in rule book!")
+    }
+    
+    if(length(book_edit) > 1) {
+      
+      stop("Parameter naming issue, too many!")
+    }
     
     ## adjust parameter length
     n_parameters <- length(book_edit[[1]]) - 1
@@ -110,7 +121,7 @@ type = "spline"
         for(i in 1:length(value)) {
           
           ## update book_edit object
-          book_edit[[1]][[2]][[i + 1]] <- splinefun(x = depth[[i]],
+          book_edit[[1]][[2]][[i + 1]] <- splinefun(x = depth[[1]],
                                                     y = value[[i]])
         }
       }
