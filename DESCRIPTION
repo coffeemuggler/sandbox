@@ -18,4 +18,6 @@ Imports:
     EMMAgeo (>= 0.9.7),
     RLumModel (>= 0.2.9),
     Luminescence (>= 0.9.15)
-RoxygenNote: 7.1.1
+Encoding: UTF-8
+Language: en-GB
+RoxygenNote: 7.1.2
