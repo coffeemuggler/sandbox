@@ -4,18 +4,22 @@
 \name{sandbox-package}
 \alias{sandbox-package}
 \alias{sandbox}
-\title{Probablistic Numerical Modelling Of Sediment Properties}
+\title{Probabilistic Numerical Modelling of Sediment Properties}
 \description{
+\if{html}{
+\figure{logo_sandbox.png}{options: width="50px" alt="logo"}
+}
+}
+\details{
 Flexible framework for definition and application of time/depth-based 
 rules for sets of parameters for single grains that can be used to 
 create synthetic samples, used for synthetic preparation and synthetic 
 measurements.
-}
-\details{
+
 \tabular{ll}{ Package: \tab sandbox\cr Type: \tab Package\cr Version: \tab
-0.0.2\cr Date: \tab 2016-10-24\cr License: \tab GPL-3\cr }
+0.2.0\cr Date: \tab 2021-11-05\cr License: \tab GPL-3\cr }
 }
 \author{
-Michael Dietze
+Michael Dietze, Sebastian Kreutzer
 }
 \keyword{package}
