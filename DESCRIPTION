@@ -9,6 +9,9 @@ Description: Flexible framework for definition and application of time/depth-
     based rules for sets of parameters for single grains that can be used to create
     synthetic samples, used for synthetic preparation and synthetic measurements.
 License: GPL-3
+BugReports: https://github.com/coffeemuggler/sandbox/issues
+Depends:
+    R (>= 4.0)
 LazyData: TRUE
 Imports:
     EMMAgeo,
