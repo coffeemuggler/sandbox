@@ -10,12 +10,12 @@
 #' measurements.
 #' 
 #' \tabular{ll}{ Package: \tab sandbox\cr Type: \tab Package\cr Version: \tab
-#' 0.0.2\cr Date: \tab 2016-10-24\cr License: \tab GPL-3\cr }
+#' 0.2.0\cr Date: \tab 2021-11-05\cr License: \tab GPL-3\cr }
 #' 
 #' @name sandbox-package
 #' @aliases sandbox
 #' @docType package
-#' @author Michael Dietze
+#' @author Michael Dietze, Sebastian Kreutzer
 #' @keywords package
 #' @import EMMAgeo
 #' @importFrom stats rnorm runif rgamma splinefun
