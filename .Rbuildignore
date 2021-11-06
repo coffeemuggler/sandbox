@@ -1,0 +1,5 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+LICENSE
+Documentation_sandbox.pdf
+Documentation_sandbox.Rmd
