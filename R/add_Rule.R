@@ -37,9 +37,9 @@
 #'                           group = "general", 
 #'                           type = "normal", 
 #'                           populations = 1)
-#'                           
+#'                 
+#' @md                           
 #' @export add_Rule
-#' 
 add_Rule <- function(
   
   book,

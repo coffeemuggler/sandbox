@@ -25,8 +25,8 @@
 #' ## convert and show mu to phi
 #' convert_units(mu = mu)
 #' 
+#' @md
 #' @export convert_units
-
 convert_units <- function (
   
   phi, 

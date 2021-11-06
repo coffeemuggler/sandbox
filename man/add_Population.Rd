@@ -25,7 +25,6 @@ book_1 <- get_RuleBook(book = "empty")
 
 book_2 <- add_Population(book = book_1, 
                          populations = 1)
-                          
 }
 \author{
 Michael Dietze

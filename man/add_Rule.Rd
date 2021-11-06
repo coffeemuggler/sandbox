@@ -11,27 +11,27 @@ add_Rule(book, name, group, type, populations = 1)
 
 \item{name}{\code{Character} value, name of the rule rule to be added.}
 
-\item{group}{\code{Character} value, group to which the rule belongs. One 
-out of \code{"general"} (covering the sediment section properties) and 
+\item{group}{\code{Character} value, group to which the rule belongs. One
+out of \code{"general"} (covering the sediment section properties) and
 \code{"specific"} (relevant for a single grain).}
 
-\item{type}{\code{Character} value, generic type of the rule. One out of 
-\code{"exact"} (defined by exact value, changing with depth), 
-\code{"normal"} (normal distribution, defined by mean and standard 
-deviation, changing with depth), \code{"uniform"} (defined by min and 
-max value, changing with depth) and \code{"gamma"} (gamma distribution, 
-defined by shape and scale parameter and constant offset, all changing 
+\item{type}{\code{Character} value, generic type of the rule. One out of
+\code{"exact"} (defined by exact value, changing with depth),
+\code{"normal"} (normal distribution, defined by mean and standard
+deviation, changing with depth), \code{"uniform"} (defined by min and
+max value, changing with depth) and \code{"gamma"} (gamma distribution,
+defined by shape and scale parameter and constant offset, all changing
 with depth)}
 
 \item{populations}{\code{Numeric} value, number of populations to create.
-The number of populations to add should match the existing number of 
+The number of populations to add should match the existing number of
 populations.}
 }
 \value{
 A list object with all rules for a model run.
 }
 \description{
-The function adds a new rule to an existing rule book. The specified rule 
+The function adds a new rule to an existing rule book. The specified rule
 will be appended to the rule book.
 }
 \examples{
@@ -44,7 +44,7 @@ book_2 <- add_Rule(book = book_1,
                           group = "general", 
                           type = "normal", 
                           populations = 1)
-                          
+                
 }
 \author{
 Michael Dietze

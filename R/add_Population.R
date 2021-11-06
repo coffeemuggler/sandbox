@@ -18,9 +18,8 @@
 #' 
 #' book_2 <- add_Population(book = book_1, 
 #'                          populations = 1)
-#'                           
+#' @md                            
 #' @export add_Population
-#' 
 add_Population <- function(
   
   book,

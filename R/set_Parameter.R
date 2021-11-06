@@ -34,7 +34,6 @@
 #' @author Michael Dietze
 #' 
 #' @examples
-#'
 #' ## get empty rule book
 #' book_1 <- get_RuleBook(book = "empty")
 #'
@@ -46,6 +45,7 @@
 #' book_1$density$density_1$type
 #' book_2$density$density_1$type
 #'
+#' @md
 #' @export set_Parameter
 set_Parameter <- function(
   book,

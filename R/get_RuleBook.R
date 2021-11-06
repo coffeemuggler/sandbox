@@ -28,6 +28,7 @@
 #' ## create simple true age-depth-relationship
 #' book_flat <- get_RuleBook(book = "empty")
 #'
+#' @md
 #' @export get_RuleBook
 get_RuleBook <- function(
   book = "empty",

@@ -25,6 +25,7 @@
 #'
 #' ## To be done today
 #'
+#' @md
 #' @export make_Sample
 make_Sample <- function(
   book,

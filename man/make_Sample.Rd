@@ -33,12 +33,12 @@ default is \code{"cuboid"}.}
 
 \item{length}{\code{Numeric} scalar, length of the cuboid or cylinder (m).}
 
-\item{slice}{\code{Logical} scalar, option to sample in repeated slices of 
-10^6 grains until the required sample size is reached. Useful to avoid 
+\item{slice}{\code{Logical} scalar, option to sample in repeated slices of
+10^6 grains until the required sample size is reached. Useful to avoid
 memory issues for large numbers of grains per sample volume.}
 
-\item{force}{\code{Logcial} scalar, option to override the default 
-maximum number of 10^7 grains per sample, set to avoid memory problems 
+\item{force}{\code{Logcial} scalar, option to override the default
+maximum number of 10^7 grains per sample, set to avoid memory problems
 of the computer.}
 }
 \value{

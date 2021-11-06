@@ -9,7 +9,7 @@ set_Rule(book, parameter, value, depth, type = "spline")
 \arguments{
 \item{book}{\code{List} object, rule book to be edited.}
 
-\item{parameter}{\code{Character} scalar, parameter name to be edited. 
+\item{parameter}{\code{Character} scalar, parameter name to be edited.
 Can also be the keyword for an OSL model. See details.}
 
 \item{value}{\code{Numeric} list, specifying the
@@ -34,21 +34,20 @@ The transfer function uses different interpolation functions to create a
 continuous representation of a parameter value with depth.
 }
 \details{
-To assign standard OSL model parameters, one of the available keywords of 
-the R package \code{RLumModel} can be used. The function will then set 
-all rules of the rule book with the standard values associated with these 
-models, and setting the standard deviation to zero. The keyword can be 
-one out of \code{"Bailey2001"}, \code{"Bailey2004"}, \code{"Pagonis2008"}, 
-\code{"Pagonis2007"}, \code{"Bailey2002"} and \code{"Friedrich2017"}. 
-This will fill the rule book with the standard parameters independent of 
-depth. Note that a dose rate (parameter name \code{osl_doserate}) needs to 
+To assign standard OSL model parameters, one of the available keywords of
+the R package \code{RLumModel} can be used. The function will then set
+all rules of the rule book with the standard values associated with these
+models, and setting the standard deviation to zero. The keyword can be
+one out of \code{"Bailey2001"}, \code{"Bailey2004"}, \code{"Pagonis2008"},
+\code{"Pagonis2007"}, \code{"Bailey2002"} and \code{"Friedrich2017"}.
+This will fill the rule book with the standard parameters independent of
+depth. Note that a dose rate (parameter name \code{osl_doserate}) needs to
 be set separately!
 }
 \examples{
 
 ## create simple true age-depth-relationship
 ## TO BE DONE.
-
 
 }
 \author{

@@ -7,30 +7,30 @@
 measure_SAR_OSL(aliquot, sequence, dose_rate = 0.1)
 }
 \arguments{
-\item{aliquot}{\code{Data frame}, a set of grains that are assigned to an 
-aliquot (sample subset used for measurement), i.e., the result of 
+\item{aliquot}{\code{Data frame}, a set of grains that are assigned to an
+aliquot (sample subset used for measurement), i.e., the result of
 \code{make_Aliquot}.}
 
 \item{sequence}{\code{List}, Definition of the SAR protocol.}
 
-\item{dose_rate}{\code{Numeric} value, Dose rate of the luminescence 
+\item{dose_rate}{\code{Numeric} value, Dose rate of the luminescence
 reader, in Gy.}
 }
 \value{
-\code{RLum.Analysis} object. Equivalent of the import result for 
-a real world measurement file. This object can be evaluated by functions 
+\code{RLum.Analysis} object. Equivalent of the import result for
+a real world measurement file. This object can be evaluated by functions
 of the package 'Luminescence'.
 }
 \description{
-The function models the time-dependent photon counts of an aliquot 
-according to the specified CW SAR OSL (continuous wave, single aliquot 
-regenerative dose protocol for optically stimulated luminescence) sequence 
-and parameters. The modelling is done for each component and photon count 
-curves are summed to return an RLum.Analysis object as equivalent of 
+The function models the time-dependent photon counts of an aliquot
+according to the specified CW SAR OSL (continuous wave, single aliquot
+regenerative dose protocol for optically stimulated luminescence) sequence
+and parameters. The modelling is done for each component and photon count
+curves are summed to return an RLum.Analysis object as equivalent of
 importing a real measurement data set to the R-package 'Luminescence'.
 }
 \details{
-The function uses the package 'RLumModel' to perform the simulation of the 
+The function uses the package 'RLumModel' to perform the simulation of the
 photon count curves.
 }
 \examples{

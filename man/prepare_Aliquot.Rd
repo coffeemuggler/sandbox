@@ -7,22 +7,22 @@
 prepare_Aliquot(sample, diameter, density = 0.65)
 }
 \arguments{
-\item{sample}{\code{Data frame}, sample object to be distributed to 
+\item{sample}{\code{Data frame}, sample object to be distributed to
 aliquots.}
 
-\item{diameter}{\code{Numeric} value, diameter of the alquot sample 
+\item{diameter}{\code{Numeric} value, diameter of the alquot sample
 carriers in mm.}
 
 \item{density}{\code{Numeric} value, packing density of the grains on
 the sample carrier. Default is \code{0.65}.}
 }
 \value{
-\code{List} object with grains organised as aliquots, i.e. list 
+\code{List} object with grains organised as aliquots, i.e. list
 elements.
 }
 \description{
-The function consecutively fills aliquots (i.e., subsamples distributed on 
-round carrier discs) with grains from an input sample. remaining grains that 
+The function consecutively fills aliquots (i.e., subsamples distributed on
+round carrier discs) with grains from an input sample. remaining grains that
 are not enough to fill a further aliquot are discarded.
 }
 \examples{
@@ -35,7 +35,6 @@ A <- prepare_Aliquot(sample = sample,
 B <- prepare_Aliquot(sample = sample, 
                      diameter = 2, 
                      density = 0.6)
-
 }
 \author{
 Michael Dietze

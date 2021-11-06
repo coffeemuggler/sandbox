@@ -7,30 +7,30 @@
 prepare_Subsample(sample, number, volume, weight)
 }
 \arguments{
-\item{sample}{\code{Data frame}, sample object to be distributed to 
+\item{sample}{\code{Data frame}, sample object to be distributed to
 aliquots.}
 
-\item{number}{\code{Numeric} value, number of evenly large subsamples to 
+\item{number}{\code{Numeric} value, number of evenly large subsamples to
 be created}
 
-\item{volume}{\code{Numeric} value, volume of subsamples. Remainder 
-of the master sample that is too small for the last subsample is 
-removed. Volume must be given in m^3 and takes packing density of 
+\item{volume}{\code{Numeric} value, volume of subsamples. Remainder
+of the master sample that is too small for the last subsample is
+removed. Volume must be given in m^3 and takes packing density of
 the sample into account.}
 
-\item{weight}{\code{Numeric} value, weight of the subsamples. Remainder 
-of the master sample that is too small for the last subsample is 
-removed. Weight is calculated based on density of each grain. Weight 
+\item{weight}{\code{Numeric} value, weight of the subsamples. Remainder
+of the master sample that is too small for the last subsample is
+removed. Weight is calculated based on density of each grain. Weight
 must be given in kg.}
 }
 \value{
-\code{List} object with grains organised as aliquots, i.e. list 
+\code{List} object with grains organised as aliquots, i.e. list
 elements.
 }
 \description{
 The function splits the master sample in a set of subsamples. The
-step can be done by creating equally large subsamples in terms of 
-contained grains (parameter \code{number}), by volume (parameter 
+step can be done by creating equally large subsamples in terms of
+contained grains (parameter \code{number}), by volume (parameter
 \code{volume}) or by weight (parameter \code{weight}).
 }
 \examples{

@@ -34,7 +34,7 @@
 #' ## create simple true age-depth-relationship
 #' ## TO BE DONE.
 #'
-#'
+#' @md
 #' @export set_Rule
 set_Rule <- function(
 book,

@@ -28,9 +28,8 @@
 #' B <- prepare_Aliquot(sample = sample, 
 #'                      diameter = 2, 
 #'                      density = 0.6)
-#'
+#' @md
 #' @export prepare_Aliquot
-#' 
 prepare_Aliquot <- function(
   sample,
   diameter, # mm

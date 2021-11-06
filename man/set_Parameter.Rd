@@ -9,7 +9,7 @@ set_Parameter(book, parameter, type)
 \arguments{
 \item{book}{\code{list} object, rule book to be edited.}
 
-\item{parameter}{\code{Character} scalar, keyword defining the parameter to 
+\item{parameter}{\code{Character} scalar, keyword defining the parameter to
 be defined. See \code{list_Parameters()} for available keywords. Some
 parameters can be described by more than one function, see details.}
 
@@ -28,21 +28,22 @@ changed through time using \code{set_Rule}.
 }
 \details{
 The following parameter types are available:
-* \code{exact}: parameter does not vary at all. No additional 
-parameters needed except for vector \code{value}, defining the 
+\itemize{
+\item \code{exact}: parameter does not vary at all. No additional
+parameters needed except for vector \code{value}, defining the
 constant values for corresponding depths.
-* \code{uniform}: parameter varies following a uniform distribution. 
-The following additional parameter vectors are required: \code{min} 
+\item \code{uniform}: parameter varies following a uniform distribution.
+The following additional parameter vectors are required: \code{min}
 (minimum) and \code{max} (maximum)
-* \code{normal}: parameter varies following a normal distribution,
+\item \code{normal}: parameter varies following a normal distribution,
 which is defined by \code{mean} (mean value) and \code{sd} (standard
 deviation)
-* \code{gamma}: parameter varies following a gamma distribution, 
-defined by \code{shape} (shape parameter), \code{scale} (scale 
+\item \code{gamma}: parameter varies following a gamma distribution,
+defined by \code{shape} (shape parameter), \code{scale} (scale
 parameter) and offset (defining constant offset of values)
 }
+}
 \examples{
-
 ## get empty rule book
 book_1 <- get_RuleBook(book = "empty")
 

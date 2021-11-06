@@ -30,8 +30,8 @@
 #' ## load example data set
 #' data(sample)
 #'
+#' @md
 #' @export prepare_Subsample
-#' 
 prepare_Subsample <- function(
   sample,
   number, 

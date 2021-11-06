@@ -33,8 +33,8 @@
 #' 
 #' }
 #' 
+#' @md 
 #' @export measure_SAR_OSL
-#' 
 measure_SAR_OSL <- function(
   
   aliquot,

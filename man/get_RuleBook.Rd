@@ -10,9 +10,9 @@ get_RuleBook(book = "empty", osl = NULL)
 \item{book}{\code{Character} value, name of the rule book to be generated.
 One out of \code{"empty"}, default is \code{"empty"}.}
 
-\item{osl}{\code{Character} value, optional keyword for an OSL (optical 
-stimulated luminescence) model of choice. Must be one of the available 
-models from the R package \code{RLumModel}. See details for full list of 
+\item{osl}{\code{Character} value, optional keyword for an OSL (optical
+stimulated luminescence) model of choice. Must be one of the available
+models from the R package \code{RLumModel}. See details for full list of
 available models.}
 }
 \value{
@@ -23,12 +23,12 @@ The function returns a pre-built model rule book, i.e., a combination of
 model parameters and rules.
 }
 \details{
-It is possible to generate OSL-tailored rule books. For this, the 
-argument \code{osl} must be provided with a keyword defining one of the 
-OSL models from the R package \code{RLumModel}: \code{"Bailey2001"}, 
-\code{"Bailey2004"}, \code{"Pagonis2008"}, \code{"Pagonis2007"}, 
-\code{"Bailey2002"} and \code{"Friedrich2017"}. The model parameters will 
-be appended to the rule book entries and defined by mean and standard 
+It is possible to generate OSL-tailored rule books. For this, the
+argument \code{osl} must be provided with a keyword defining one of the
+OSL models from the R package \code{RLumModel}: \code{"Bailey2001"},
+\code{"Bailey2004"}, \code{"Pagonis2008"}, \code{"Pagonis2007"},
+\code{"Bailey2002"} and \code{"Friedrich2017"}. The model parameters will
+be appended to the rule book entries and defined by mean and standard
 deviation.
 }
 \examples{
