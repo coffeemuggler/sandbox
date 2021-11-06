@@ -1,6 +1,6 @@
 Package: sandbox
 Type: Package
-Title: Probablistic Numerical Modelling Of Sediment Properties
+Title: Probablistic Numerical Modelling of Sediment Properties
 Version: 0.0.2
 Date: 2021-11-06
 Author: Michael Dietze [aut, cre] (<https://orcid.org/0000-0001-6063-1726>),
@@ -15,7 +15,7 @@ Depends:
     R (>= 4.0)
 LazyData: TRUE
 Imports:
-    EMMAgeo,
-    RLumModel,
-    Luminescence
+    EMMAgeo (>= 0.9.7),
+    RLumModel (>= 0.2.9),
+    Luminescence (>= 0.9.15)
 RoxygenNote: 7.1.1
