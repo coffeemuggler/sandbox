@@ -1,9 +1,9 @@
 #' Get one of a series of predefined rule books for a model run.
 #'
-#' The function returns a prebuilt model rule book, i.e., a combination of
+#' The function returns a pre-built model rule book, i.e., a combination of
 #' model parameters and rules.
 #'
-#' It is possibe to generate OSL-tailored rule books. For this, the 
+#' It is possible to generate OSL-tailored rule books. For this, the 
 #' argument \code{osl} must be provided with a keyword defining one of the 
 #' OSL models from the R package \code{RLumModel}: \code{"Bailey2001"}, 
 #' \code{"Bailey2004"}, \code{"Pagonis2008"}, \code{"Pagonis2007"}, 
