@@ -15,7 +15,7 @@ To install the latest development builds directly from GitHub, run
 ``` r
 if(!require("devtools"))
   install.packages("devtools")
-devtools::install_github("R-Lum/RLumSTARR@<wanted branch>")
+devtools::install_github("coffeemuggler/sandbox@<wanted branch>")
 ```
 
 ## License
