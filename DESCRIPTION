@@ -2,8 +2,9 @@ Package: sandbox
 Type: Package
 Title: Probablistic Numerical Modelling Of Sediment Properties
 Version: 0.0.2
-Date: 2017-04-06
-Author: Michael Dietze
+Date: 2021-11-06
+Author: Michael Dietze [aut, cre] (<https://orcid.org/0000-0001-6063-1726>),
+  Sebastian Kreutzer [aut] (<https://orcid.org/0000-0002-0734-2199>)
 Maintainer: Michael Dietze <mdietze@gfz-potsdam.de>
 Description: Flexible framework for definition and application of time/depth-
     based rules for sets of parameters for single grains that can be used to create
