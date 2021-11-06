@@ -1,4 +1,8 @@
-#' Probablistic Numerical Modelling Of Sediment Properties
+#' Probabilistic Numerical Modelling of Sediment Properties
+#' 
+#' \if{html}{
+#' \figure{logo_sandbox.png}{options: width="50px" alt="logo"}
+#' }
 #' 
 #' Flexible framework for definition and application of time/depth-based 
 #' rules for sets of parameters for single grains that can be used to 
