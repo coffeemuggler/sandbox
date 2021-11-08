@@ -84,7 +84,7 @@ get_RuleBook <- function(
   
   if(!is.null(osl) == TRUE) {
     
-    osl_parameters <- .set_pars(model = osl)
+    osl_parameters <- RLumModel::.set_pars(model = osl)
     
     osl_parameters <- osl_parameters[1:7]
     
