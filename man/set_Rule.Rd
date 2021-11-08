@@ -7,22 +7,22 @@
 set_Rule(book, parameter, value, depth, type = "spline")
 }
 \arguments{
-\item{book}{\code{List} object, rule book to be edited.}
+\item{book}{\link{list} object, rule book to be edited.}
 
-\item{parameter}{\code{Character} scalar, parameter name to be edited.
+\item{parameter}{\link{character} scalar, parameter name to be edited.
 Can also be the keyword for an OSL model. See details.}
 
-\item{value}{\code{Numeric} list, specifying the
+\item{value}{\link{numeric} list, specifying the
 parameter values at the corresponding depth points. If a parameter
 is defined by more than one argument (e.g., mean and standard
 deviation), all the relevant arguments must be defined for each
 corresponding depth as separate list element.}
 
-\item{depth}{\code{Numeric} list, specifying the depths used for the
+\item{depth}{\link{numeric} list, specifying the depths used for the
 interpolation. All elements must be of the same lengths as the
 corresponding data in \code{value}.}
 
-\item{type}{\code{Character} scalar, interpolation method. One out of
+\item{type}{\link{character} scalar, interpolation method. One out of
 \code{spline}, default is \code{spline}.}
 }
 \value{
@@ -35,13 +35,11 @@ continuous representation of a parameter value with depth.
 }
 \details{
 To assign standard OSL model parameters, one of the available keywords of
-the R package \code{RLumModel} can be used. The function will then set
+the R package \code{'RLumModel'} can be used. The function will then set
 all rules of the rule book with the standard values associated with these
 models, and setting the standard deviation to zero. The keyword can be
 one out of \code{"Bailey2001"}, \code{"Bailey2004"}, \code{"Pagonis2008"},
-\code{"Pagonis2007"}, \code{"Bailey2002"} and \code{"Friedrich2017"}.
-This will fill the rule book with the standard parameters independent of
-depth. Note that a dose rate (parameter name \code{osl_doserate}) needs to
+\code{"Pagonis2007"}, \code{"Bailey2002"} and \verb{"Friedrich2017"\}.  This will fill the rule book with the standard parameters independent of  depth. Note that a dose rate (parameter name }osl_doserate`) needs to
 be set separately!
 }
 \examples{
