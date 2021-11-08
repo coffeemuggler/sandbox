@@ -5,28 +5,28 @@
 #' continuous representation of a parameter value with depth.
 #'
 #' To assign standard OSL model parameters, one of the available keywords of 
-#' the R package \code{RLumModel} can be used. The function will then set 
+#' the R package `'RLumModel'` can be used. The function will then set 
 #' all rules of the rule book with the standard values associated with these 
 #' models, and setting the standard deviation to zero. The keyword can be 
-#' one out of \code{"Bailey2001"}, \code{"Bailey2004"}, \code{"Pagonis2008"}, 
-#' \code{"Pagonis2007"}, \code{"Bailey2002"} and \code{"Friedrich2017"}. 
+#' one out of `"Bailey2001"`, `"Bailey2004"`, `"Pagonis2008"`, 
+#' `"Pagonis2007"`, `"Bailey2002"` and `"Friedrich2017"}. 
 #' This will fill the rule book with the standard parameters independent of 
-#' depth. Note that a dose rate (parameter name \code{osl_doserate}) needs to 
+#' depth. Note that a dose rate (parameter name `osl_doserate`) needs to 
 #' be set separately!
 #'
-#' @param book \code{List} object, rule book to be edited.
-#' @param parameter \code{Character} scalar, parameter name to be edited. 
+#' @param book [list] object, rule book to be edited.
+#' @param parameter [character] scalar, parameter name to be edited. 
 #'        Can also be the keyword for an OSL model. See details.
-#' @param value \code{Numeric} list, specifying the
+#' @param value [numeric] list, specifying the
 #'        parameter values at the corresponding depth points. If a parameter
 #'        is defined by more than one argument (e.g., mean and standard
 #'        deviation), all the relevant arguments must be defined for each
 #'        corresponding depth as separate list element.
-#' @param depth \code{Numeric} list, specifying the depths used for the
+#' @param depth [numeric] list, specifying the depths used for the
 #'        interpolation. All elements must be of the same lengths as the
-#'        corresponding data in \code{value}.
-#' @param type \code{Character} scalar, interpolation method. One out of
-#'        \code{spline}, default is \code{spline}.
+#'        corresponding data in `value`.
+#' @param type [character] scalar, interpolation method. One out of
+#'        `spline`, default is `spline`.
 #' @return A list object with all created formula objects.
 #' @author Michael Dietze
 #' @examples
@@ -163,7 +163,7 @@ type = "spline"
     book_key <- book
     
     ## get OSL parameters of keyword model
-    osl_parameters <- RLumModel:::.set_pars(model = parameter)
+    osl_parameters <- RLumModel::.set_pars(model = parameter)
     
     ## reduce to parameters of interest
     osl_parameters <- osl_parameters[1:7]
