@@ -4,24 +4,24 @@
 #' model parameters and rules.
 #'
 #' It is possible to generate OSL-tailored rule books. For this, the 
-#' argument \code{osl} must be provided with a keyword defining one of the 
-#' OSL models from the R package \code{RLumModel}: \code{"Bailey2001"}, 
-#' \code{"Bailey2004"}, \code{"Pagonis2008"}, \code{"Pagonis2007"}, 
-#' \code{"Bailey2002"} and \code{"Friedrich2017"}. The model parameters will 
+#' argument `osl` must be provided with a keyword defining one of the 
+#' OSL models from the R package `'RLumModel'`: `"Bailey2001"`, 
+#' `"Bailey2004"`, `"Pagonis2008"`, `"Pagonis2007"`, 
+#' `"Bailey2002"` and `"Friedrich2017"`. The model parameters will 
 #' be appended to the rule book entries and defined by mean and standard 
 #' deviation. 
 #'
-#' @param book \code{Character} value, name of the rule book to be generated.
-#' One out of \code{"empty"}, default is \code{"empty"}.
+#' @param book [character] value, name of the rule book to be generated.
+#' One out of `"empty"`, default is `"empty"`.
 #'        
-#' @param osl \code{Character} value, optional keyword for an OSL (optical 
+#' @param osl [character] value, optional keyword for an OSL (optical 
 #' stimulated luminescence) model of choice. Must be one of the available 
-#' models from the R package \code{RLumModel}. See details for full list of 
+#' models from the R package `'RLumModel'`. See details for full list of 
 #' available models.
 #' 
 #' @return A list object with all rules for a model run.
 #' 
-#' @author Michael Dietze
+#' @author Michael Dietze, GFZ Potsdam (Germany)
 #' 
 #' @examples
 #'
@@ -40,8 +40,7 @@ get_RuleBook <- function(
                          y = c(0, 1))
   
   ## definition of rule book "flat" -------------------------------------------
-  if(book == "empty") {
-    
+  if (book == "empty") {
     rule_book <- list(
       ## title
       book = "empty",
@@ -85,7 +84,7 @@ get_RuleBook <- function(
   
   if(!is.null(osl) == TRUE) {
     
-    osl_parameters <- RLumModel:::.set_pars(model = osl)
+    osl_parameters <- .set_pars(model = osl)
     
     osl_parameters <- osl_parameters[1:7]
     
@@ -103,7 +102,6 @@ get_RuleBook <- function(
                         "osl_R")
     
     for(i in 1:length(osl_parameters)) {
-      
       rule_book <- add_Rule(book = rule_book, 
                          name = osl_parameters[i], 
                          group = "specific",
