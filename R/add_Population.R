@@ -1,15 +1,15 @@
-#' Add a population to a rule book
+#' @title Add a Population to a Rule Book
 #'
-#' The function adds a further population element to all rules or a rule book.
+#' @description The function adds a further population element to all rules or a rule book.
 #'
-#' @param book \code{Character} value, name of the rule book to be modified.
+#' @param book [character] value, name of the rule book to be modified.
 #' 
-#' @param populations \code{Numeric} value, number of additional populations
+#' @param populations [numeric] value, number of additional populations
 #' to create.
 #' 
-#' @return A list object with all rules for a model run.
+#' @return A [list] object with all rules for a model run.
 #' 
-#' @author Michael Dietze
+#' @author Michael Dietze, GFZ Potsdam (Germany)
 #' 
 #' @examples
 #'
@@ -21,7 +21,6 @@
 #' @md                            
 #' @export add_Population
 add_Population <- function(
-  
   book,
   populations = 1
 ) {
@@ -69,4 +68,6 @@ add_Population <- function(
                 book_body)
   
   ## return output
-  return(book_new)}
+  return(book_new)
+
+}

@@ -1,22 +1,22 @@
-#' Prepare aliquots from sample data set
+#' @title Prepare Aliquots from Sample Dataset
 #' 
-#' The function consecutively fills aliquots (i.e., subsamples distributed on 
+#' @description The function consecutively fills aliquots (i.e., subsamples distributed on 
 #' round carrier discs) with grains from an input sample. remaining grains that 
 #' are not enough to fill a further aliquot are discarded.
 #' 
-#' @param sample \code{Data frame}, sample object to be distributed to 
+#' @param sample [data.frame], sample object to be distributed to 
 #' aliquots.
 #' 
-#' @param diameter \code{Numeric} value, diameter of the alquot sample 
+#' @param diameter [numeric] value, diameter of the aliquot sample 
 #' carriers in mm.
 #' 
-#' @param density \code{Numeric} value, packing density of the grains on
-#' the sample carrier. Default is \code{0.65}.
+#' @param density [numeric] value, packing density of the grains on
+#' the sample carrier. Default is `0.65`.
 #' 
-#' @return \code{List} object with grains organised as aliquots, i.e. list 
+#' @return [list] object with grains organised as aliquots, i.e. list 
 #' elements.
 #' 
-#' @author Michael Dietze
+#' @author Michael Dietze, GFZ Potsdam (Germany)
 #' 
 #' @examples
 #' ## load example data set
@@ -53,9 +53,8 @@ prepare_Aliquot <- function(
   
   aliquot_cut <- numeric(length = length(aliquot_n))
   
-  for(i in 1:length(aliquot_cut)) {
-    
-    i_cut <- abs(area_grains_cum - aliquot_n[i]) == 
+  for (i in 1:length(aliquot_cut)) {
+      i_cut <- abs(area_grains_cum - aliquot_n[i]) == 
       min(abs(area_grains_cum - aliquot_n[i]))
     
     aliquot_cut[i] <- aliquot_i[i_cut]
@@ -66,8 +65,7 @@ prepare_Aliquot <- function(
   aliquots <- vector(mode = "list", 
                      length = length(aliquot_n))
   
-  for(i in 1:length(aliquots)) {
-    
+  for (i in 1:length(aliquots)) {
     aliquots[[i]] <- sample[aliquot_cut[i]:aliquot_cut[i + 1],]
   }
   

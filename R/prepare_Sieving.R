@@ -1,24 +1,24 @@
-#' Sieve a sample.
+#' @title Sieve a Sample
 #'
-#' The function removes grains that are not within the provided sieve
+#' @description The function removes grains that are not within the provided sieve
 #' interval.
 #'
-#'
-#' @param sample \code{Data frame} sample object to be sieved.
+#' @param sample [data.frame] sample object to be sieved.
 #' 
-#' @param interval \code{Numeric} vector, sieve interval, in phi units.
+#' @param interval [numeric] vector, sieve interval, in phi units.
 #' 
-#' @return \code{Data frame} with grains that are within the sieve interval.
+#' @return [data.frame] with grains that are within the sieve interval.
 #' 
-#' @author Michael Dietze
+#' @author Michael Dietze, GFZ Potsdam (Germany)
 #' 
 #' @examples
 #' ## load example data set
 #' data(sample)
 #' 
 #' ## sieve sample (in phi units)
-#' sample_sieved <- prepare_Sieving(sample = sample,
-#'                                  interval = c(5, 6))
+#' sample_sieved <- prepare_Sieving(
+#'   sample = sample,
+#'   interval = c(5, 6))
 #'                                  
 #' ## plot results
 #' plot(density(x = sample$grainsize, 
@@ -29,10 +29,8 @@
 #'               to = 11), 
 #'       col = 2)
 #' 
-#'
-#'
-#' @export prepare_Sieving
-#' 
+#' @md
+#' @export
 prepare_Sieving <- function(
   sample,
   interval

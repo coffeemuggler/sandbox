@@ -1,21 +1,20 @@
-#' Probabilistic Numerical Modelling of Sediment Properties
+#' @title Probabilistic Numerical Modelling of Sediment Properties
 #' 
 #' \if{html}{
 #' \figure{logo_sandbox.png}{options: width="50px" alt="logo"}
 #' }
 #' 
-#' Flexible framework for definition and application of time/depth-based 
+#' @description Flexible framework for definition and application of time/depth-based 
 #' rules for sets of parameters for single grains that can be used to 
 #' create synthetic samples, used for synthetic preparation and synthetic 
 #' measurements.
 #' 
-#' \tabular{ll}{ Package: \tab sandbox\cr Type: \tab Package\cr Version: \tab
-#' 0.2.0\cr Date: \tab 2021-11-05\cr License: \tab GPL-3\cr }
-#' 
+#' @md
 #' @name sandbox-package
 #' @aliases sandbox
 #' @docType package
-#' @author Michael Dietze, Sebastian Kreutzer
+#' @author Michael Dietze (GFZ Potsdam, Germany), 
+#'  Sebastian Kreutzer (Geography & Earth Sciences, Aberystwyth University, United Kingdom)
 #' @keywords package
 #' @import EMMAgeo
 #' @importFrom stats rnorm runif rgamma splinefun

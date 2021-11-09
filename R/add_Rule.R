@@ -1,31 +1,31 @@
-#' Add a rule to a rule book
+#' @title Add a Rule to a Rule Book
 #'
-#' The function adds a new rule to an existing rule book. The specified rule 
+#' @description The function adds a new rule to an existing rule book. The specified rule 
 #' will be appended to the rule book.
 #'
-#' @param book \code{Character} value, name of the rule book to be modified.
+#' @param book [character] value, name of the rule book to be modified.
 #' 
-#' @param name \code{Character} value, name of the rule rule to be added.
+#' @param name [character] value, name of the rule rule to be added.
 #' 
-#' @param group \code{Character} value, group to which the rule belongs. One 
-#' out of \code{"general"} (covering the sediment section properties) and 
-#' \code{"specific"} (relevant for a single grain).
+#' @param group [character] value, group to which the rule belongs. One 
+#' out of `"general"` (covering the sediment section properties) and 
+#' `"specific"` (relevant for a single grain).
 #' 
-#' @param type \code{Character} value, generic type of the rule. One out of 
-#' \code{"exact"} (defined by exact value, changing with depth), 
-#' \code{"normal"} (normal distribution, defined by mean and standard 
-#' deviation, changing with depth), \code{"uniform"} (defined by min and 
-#' max value, changing with depth) and \code{"gamma"} (gamma distribution, 
+#' @param type [character] value, generic type of the rule. One out of 
+#' `"exact"` (defined by exact value, changing with depth), 
+#' `"normal"` (normal distribution, defined by mean and standard 
+#' deviation, changing with depth), `"uniform"` (defined by minimum and 
+#' maximum values, changing with depth) and `"gamma"` (gamma distribution, 
 #' defined by shape and scale parameter and constant offset, all changing 
 #' with depth)
 #' 
-#' @param populations \code{Numeric} value, number of populations to create.
+#' @param populations [numeric] value, number of populations to create.
 #' The number of populations to add should match the existing number of 
 #' populations.
 #' 
-#' @return A list object with all rules for a model run.
+#' @return A [list] object with all rules for a model run.
 #' 
-#' @author Michael Dietze
+#' @author Michael Dietze, GFZ Potsdam (Germany)
 #' 
 #' @examples
 #'
@@ -41,7 +41,6 @@
 #' @md                           
 #' @export add_Rule
 add_Rule <- function(
-  
   book,
   name,
   group,

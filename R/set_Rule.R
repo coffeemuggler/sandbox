@@ -1,11 +1,11 @@
-#' Set depth-dependent rule for model parameter.
+#' @title Set depth-dependent rule for model parameter.
 #'
-#' The function defines how the specified model parameter varies with depth.
+#' @description The function defines how the specified model parameter varies with depth.
 #' The transfer function uses different interpolation functions to create a
 #' continuous representation of a parameter value with depth.
 #'
-#' To assign standard OSL model parameters, one of the available keywords of 
-#' the R package `'RLumModel'` can be used. The function will then set 
+#' @details To assign standard OSL model parameters, one of the available keywords of 
+#' the R package [RLumModel-package] can be used. The function will then set 
 #' all rules of the rule book with the standard values associated with these 
 #' models, and setting the standard deviation to zero. The keyword can be 
 #' one out of `"Bailey2001"`, `"Bailey2004"`, `"Pagonis2008"`, 
@@ -37,11 +37,11 @@
 #' @md
 #' @export set_Rule
 set_Rule <- function(
-book,
-parameter,
-value,
-depth,
-type = "spline"
+  book,
+  parameter,
+  value,
+  depth,
+  type = "spline"
 ) {
 
   ## check/adjust input parameters ---------------------------------------------------
@@ -50,23 +50,22 @@ type = "spline"
   output_flag <- TRUE
 
   ## check data format of interpolation type
-  if(sum(type == c("spline")) < 1) {
-
+  if (sum(type == c("spline")) < 1) 
     warning("Interpolation method unavailable. Spline is used!")
-  }
   
-  ## create function ----------------------------------------------------------
+## create function ----------------------------------------------------------
 
   ## defined keywords
-  keywords <- c("Bailey2001", 
-                "Bailey2004", 
-                "Pagonis2008", 
-                "Pagonis2007", 
-                "Bailey2002", 
-                "Friedrich2017")
+  keywords <- c(
+    "Bailey2001", 
+    "Bailey2004", 
+    "Pagonis2008", 
+    "Pagonis2007", 
+    "Bailey2002", 
+    "Friedrich2017")
   
   ## option 1 - parameter name specified
-  if(parameter%in%keywords == FALSE) {
+  if (parameter %in% keywords == FALSE) {
     
     ## extract book content
     book_content <- names(book)
@@ -75,28 +74,22 @@ type = "spline"
     book_edit <- book[book_content == parameter]
     
     ## account for errors
-    if(length(book_edit) == 0) {
-      
-      stop("Parameter name not present in rule book!")
-    }
+    if (length(book_edit) == 0)
+      stop("[set_Rule()] Parameter name not present in rule book!", call. = FALSE)
     
-    if(length(book_edit) > 1) {
-      
-      stop("Parameter naming issue, too many!")
-    }
+    if (length(book_edit) > 1)
+      stop("[set_Rule()] Parameter naming issue, too many!", call. = FALSE)
     
     ## adjust parameter length
     n_parameters <- length(book_edit[[1]]) - 1
     
-    if(n_parameters != length(value)) {
-      
+    if (n_parameters != length(value)) {
       book_edit_new <- vector(mode = "list",
                               length = length(value) + 1)
       
       book_edit_new[[1]] <- book_edit[[1]][[1]]
       
-      for(i in 2:length(book_edit_new)) {
-        
+      for (i in 2:length(book_edit_new)) {
         book_edit_new[[i]] <- book_edit[[1]][[2]]
       }
       
@@ -111,13 +104,11 @@ type = "spline"
     ## infer group name
     group <- book_edit[[1]]$group
     
-    if(group == "general") {
-      
+    if (group == "general") {
       ## define rule for general parameter type
       
-      ## spline interpolaton
-      if(type == "spline") {
-        
+      ## spline interpolation
+      if (type == "spline") {
         for(i in 1:length(value)) {
           
           ## update book_edit object
@@ -126,12 +117,10 @@ type = "spline"
         }
       }
       
-    } else if(group == "specific") {
-      
+    } else if (group == "specific") {
       ## define rule for specific parameter type
-      for(i in 1:length(value)) {
-        
-        for(j in 1:length(value[[i]])) {
+      for (i in 1:length(value)) {
+        for (j in 1:length(value[[i]])) {
           
           # ## update book_edit object
           # book_edit[[1]][[i + 1]][[j + 1]] <- splinefun(x = depth[[i]][[j]],
@@ -148,8 +137,7 @@ type = "spline"
     }
     
     ## return output ------------------------------------------------------------
-    if(output_flag == TRUE) {
-      
+    if (output_flag) {
       ## update input book
       book[book_content == parameter] <- book_edit
       
@@ -171,8 +159,7 @@ type = "spline"
     ## create corresponding parameter names
     osl_names <- osl_parameters
     
-    for(i in 1:length(osl_names)){
-      
+    for (i in 1:length(osl_names)) {
       osl_names[[i]] <- 
         paste("osl_", rep(x = names(osl_parameters)[i], 
                           times = length(osl_parameters[[i]])),
@@ -185,8 +172,7 @@ type = "spline"
     osl_parameters <- c(as.numeric(unlist(osl_parameters)), 5e7)
   
     ## update rule book with parameters
-    for(i in 1:length(osl_names)) {
-      
+    for (i in 1:length(osl_names)) {
       value_i <- lapply(X = 1:(length(book_key$population) - 1), 
                         FUN = function(x, osl_parameters, depth) {
                           
@@ -204,11 +190,8 @@ type = "spline"
     }
     
     ## return output ------------------------------------------------------------
-    if(output_flag == TRUE) {
-      
-      ## return output
-      return(book_key)
-    }
+    if (output_flag) return(book_key)
+    
   }
 
 }

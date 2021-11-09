@@ -1,17 +1,17 @@
-#' Convert between phi units and micrometers
+#' @title Convert between phi units and micrometers
 #' 
-#' The function converts values from the phi-scale to 
+#' @description The function converts values from the phi-scale to 
 #' the micrometer-scale and vice versa.
 #' 
-#' @param phi \code{Numeric} vector, grain-size class values 
+#' @param phi [numeric] vector, grain-size class values 
 #' in phi to be converted
 #' 
-#' @param mu \code{Numeric} vector, grain-size class values 
+#' @param mu [numeric] vector, grain-size class values 
 #' in micrometres to be converted
 #' 
-#' @return \code{Numeric} vector, converted grain-size class values
+#' @return [numeric] vector, converted grain-size class values
 #' 
-#' @author Michael Dietze
+#' @author Michael Dietze, GFZ Potsdam (Germany)
 #' 
 #' @examples
 #' ## load example data set
@@ -27,20 +27,12 @@
 #' 
 #' @md
 #' @export convert_units
-convert_units <- function (
-  
+convert_units <- function(
   phi, 
   mu
-  
 ) {
-  if (missing(mu) == TRUE) {
-    result <- 1000 * 2^-phi
-  }
-  else if (missing(phi) == TRUE) {
-    result <- -log2(mu/1000)
-  }
-  else {
-    stop("No correct variables provided")
-  }
-  return(result)
+  if (missing(mu)) return(1000 * 2 ^ -phi)
+  if (missing(phi)) return(-log2(mu / 1000))
+
+  stop("[convert_units()] No correct variables provided!", call. = FALSE)
 }

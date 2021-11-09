@@ -1,37 +1,36 @@
-#' Set profile- and grain-specific model parameters.
+#' @title Set Profile- and Grain-Specific Model Parameters.
 #'
-#' The function defines one model parameter used to generate a set of
+#' @description The function defines one model parameter used to generate a set of
 #' virtual grains. A parameter is defined in a probabilistic way, as parametric
 #' distribution function. Each parameter of the distribution function can be
-#' changed through time using \code{set_Rule}.
+#' changed through time using [set_Rule].
 #'
 #' @details The following parameter types are available:
-#' * \code{exact}: parameter does not vary at all. No additional 
-#' parameters needed except for vector \code{value}, defining the 
+#' * `exact`: parameter does not vary at all. No additional 
+#' parameters needed except for vector `value`, defining the 
 #' constant values for corresponding depths.
-#' * \code{uniform}: parameter varies following a uniform distribution. 
-#' The following additional parameter vectors are required: \code{min} 
-#' (minimum) and \code{max} (maximum)
-#' * \code{normal}: parameter varies following a normal distribution,
-#' which is defined by \code{mean} (mean value) and \code{sd} (standard
-#' deviation)
-#' * \code{gamma}: parameter varies following a gamma distribution, 
-#' defined by \code{shape} (shape parameter), \code{scale} (scale 
-#' parameter) and offset (defining constant offset of values)
+#' * `uniform`: parameter varies following a uniform distribution. 
+#' The following additional parameter vectors are required: `min` 
+#' (minimum) and `max` (maximum)
+#' * `normal`: parameter varies following a normal distribution,
+#' which is defined by mean and standard deviation
+#' * `gamma`: parameter varies following a gamma distribution, 
+#' defined by shape parameter, scale parameter) 
+#' and offset (defining constant offset of values)
 #'
-#' @param book \code{list} object, rule book to be edited.
+#' @param book [list] object, rule book to be edited.
 #' 
-#' @param parameter \code{Character} scalar, keyword defining the parameter to 
-#'        be defined. See \code{list_Parameters()} for available keywords. Some
+#' @param parameter [character] scalar, keyword defining the parameter to 
+#'        be defined. See `list_Parameters()` for available keywords. Some
 #'        parameters can be described by more than one function, see details.
 #'        
-#' @param type \code{Character} scalar, keyword defining the distribution
+#' @param type [character] scalar, keyword defining the distribution
 #'        function used to describe the parameter. See details for available
-#'        keywords, default is "exact".
+#'        keywords, default is `"exact"`.
 #'        
-#' @return A list object.
+#' @return A [list] object.
 #' 
-#' @author Michael Dietze
+#' @author Michael Dietze, GFZ Potsdam (Germany)
 #' 
 #' @examples
 #' ## get empty rule book
@@ -65,31 +64,27 @@ set_Parameter <- function(
                         y = c(0, 1))
 
   ## constant definition
-  if(type == "exact") {
-
+  if (type == "exact") {
     parameter_out <- list(type = "exact",
                           value = fun_dummy)
   }
 
   ## rnorm definition
-  if(type == "normal") {
-    
+  if (type == "normal") {
     parameter_out <- list(type = "normal",
                           mean = fun_dummy,
                           sd = fun_dummy)
   }
   
   ## runif definition
-  if(type == "uniform") {
-    
+  if (type == "uniform") {
     parameter_out <- list(type = "uniform",
                           min = fun_dummy,
                           max = fun_dummy)
   }
   
   ## runif definition
-  if(type == "gamma") {
-    
+  if (type == "gamma") {
     parameter_out <- list(type = "gamma",
                           shape = fun_dummy,
                           scale = fun_dummy,
@@ -103,8 +98,7 @@ set_Parameter <- function(
   book_edit <- book[book_content == parameter]
 
   ## set parameters
-  for(i in 2:length(book_edit[[1]][[2]])) {
-
+  for (i in 2:length(book_edit[[1]][[2]])) {
     book_edit[[1]][[i]] <- parameter_out
   }
 
@@ -112,8 +106,7 @@ set_Parameter <- function(
   book[book_content == parameter] <- book_edit
 
   ## return output ------------------------------------------------------------
-  if(output_flag == TRUE) {
-
+  if (output_flag) {
     return(book)
   }
 }

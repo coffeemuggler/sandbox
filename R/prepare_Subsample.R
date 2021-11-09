@@ -1,30 +1,30 @@
-#' Prepare subsamples from a sample data set
+#' @title Prepare Subsamples from a Sample Dataset
 #' 
-#' The function splits the master sample in a set of subsamples. The
+#' @description The function splits the master sample in a set of subsamples. The
 #' step can be done by creating equally large subsamples in terms of 
-#' contained grains (parameter \code{number}), by volume (parameter 
-#' \code{volume}) or by weight (parameter \code{weight}).
+#' contained grains (parameter `number`), by volume (parameter 
+#' `volume`) or by weight (parameter `weight`).
 #' 
-#' @param sample \code{Data frame}, sample object to be distributed to 
+#' @param sample [data.frame], sample object to be distributed to 
 #' aliquots.
 #' 
-#' @param number \code{Numeric} value, number of evenly large subsamples to 
+#' @param number [numeric] value, number of evenly large subsamples to 
 #' be created
 #' 
-#' @param volume \code{Numeric} value, volume of subsamples. Remainder 
+#' @param volume [numeric] value, volume of subsamples. Remainder 
 #' of the master sample that is too small for the last subsample is 
 #' removed. Volume must be given in m^3 and takes packing density of 
 #' the sample into account.
 #' 
-#' @param weight \code{Numeric} value, weight of the subsamples. Remainder 
+#' @param weight [numeric] value, weight of the subsamples. Remainder 
 #' of the master sample that is too small for the last subsample is 
 #' removed. Weight is calculated based on density of each grain. Weight 
 #' must be given in kg.
 #' 
-#' @return \code{List} object with grains organised as aliquots, i.e. list 
+#' @return [list] object with grains organised as aliquots, i.e. list 
 #' elements.
 #' 
-#' @author Michael Dietze
+#' @author Michael Dietze, GFZ Postdam (Germany)
 #' 
 #' @examples
 #' ## load example data set
@@ -41,8 +41,8 @@ prepare_Subsample <- function(
   
   ## check if only one subsampling criterion is given
   if(sum(c(!missing(number), !missing(volume), !missing(weight))) > 1) {
-    
-    stop("Only one criterion for subsampling is allowed!")
+    stop("[prepare_Subsample()] Only one criterion for subsampling is allowed!", 
+         call. = FALSE)
   }
   
   ## option 1, subsampling by number of grains
@@ -68,7 +68,7 @@ prepare_Subsample <- function(
   }
   
   ## option 2, subsampling by volume
-  if(missing(volume) == FALSE) {
+  if(!missing(volume)) {
     
     ## get grain radius
     r_grains <- EMMAgeo::convert.units(phi = sample$grainsize) / (2 * 10^6)
@@ -88,7 +88,7 @@ prepare_Subsample <- function(
   }
   
   ## option 2, subsampling by weight
-  if(missing(weight) == FALSE) {
+  if(!missing(weight)) {
     
     ## get grain radius
     r_grains <- EMMAgeo::convert.units(phi = sample$grainsize) / (2 * 10^6)

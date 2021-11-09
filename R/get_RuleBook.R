@@ -1,8 +1,9 @@
-#' Get one of a series of predefined rule books for a model run.
+#' @title Get One of a Series of Predefined Rule Books for a Model Run.
 #'
-#' The function returns a pre-built model rule book, i.e., a combination of
+#' @description The function returns a pre-built model rule book, i.e., a combination of
 #' model parameters and rules.
 #'
+#' @details 
 #' It is possible to generate OSL-tailored rule books. For this, the 
 #' argument `osl` must be provided with a keyword defining one of the 
 #' OSL models from the R package `'RLumModel'`: `"Bailey2001"`, 
@@ -16,10 +17,10 @@
 #'        
 #' @param osl [character] value, optional keyword for an OSL (optical 
 #' stimulated luminescence) model of choice. Must be one of the available 
-#' models from the R package `'RLumModel'`. See details for full list of 
+#' models from the R package [RLumModel-package]. See details for full list of 
 #' available models.
 #' 
-#' @return A list object with all rules for a model run.
+#' @return A [list] object with all rules for a model run.
 #' 
 #' @author Michael Dietze, GFZ Potsdam (Germany)
 #' 

@@ -1,26 +1,28 @@
-#' Create a virtual sample.
+#' @title Create a Virtual Sample.
 #'
-#' The function generates many virtual sediment grains based on the specified
+#' @description The function generates many virtual sediment grains based on the specified
 #' sample geometry and depth, using the information from a rule book.
 #'
-#' @param book \code{list} object, RuleBook to be used.
-#' @param depth \code{Numeric} scalar, depth of the sample center (m).
-#' @param geometry \code{Character} scalar, keyword defining the geometry of
-#'        the sample. One out of \code{"cuboid"} and \code{"cylinder"},
-#'        default is \code{"cuboid"}.
-#' @param radius \code{Numeric} scalar, radius of the cylinder (m).
-#' @param height \code{Numeric} scalar, height of the cuboid (m).
-#' @param width \code{Numeric} scalar, width of the cuboid (m).
-#' @param length \code{Numeric} scalar, length of the cuboid or cylinder (m).
-#' @param slice \code{Logical} scalar, option to sample in repeated slices of 
+#' @param book [list] object, RuleBook to be used.
+#' @param depth [numeric] scalar, depth of the sample centre (m).
+#' @param geometry [character] scalar, keyword defining the geometry of
+#'        the sample. One out of `"cuboid"` and `"cylinder"`,
+#'        default is `"cuboid"`.
+#' @param radius [numeric] scalar, radius of the cylinder (m).
+#' @param height [numeric] scalar, height of the cuboid (m).
+#' @param width [numeric] scalar, width of the cuboid (m).
+#' @param length [numeric] scalar, length of the cuboid or cylinder (m).
+#' @param slice [logical] scalar, option to sample in repeated slices of 
 #' 10^6 grains until the required sample size is reached. Useful to avoid 
 #' memory issues for large numbers of grains per sample volume.
-#' @param force \code{Logcial} scalar, option to override the default 
+#' @param force [logical] scalar, option to override the default 
 #' maximum number of 10^7 grains per sample, set to avoid memory problems 
 #' of the computer.
 #' 
-#' @return A list object.
-#' @author Michael Dietze
+#' @return A [list] object.
+#' 
+#' @author Michael Dietze, GFZ Potsdam (Germany)
+#' 
 #' @examples
 #'
 #' ## To be done today
@@ -42,23 +44,23 @@ make_Sample <- function(
   ## calculations -------------------------------------------------------------
   
   ## determine depth range and sample volume based on sample geometry
-  if(geometry == "cuboid") {
+  if (geometry == "cuboid") {
     
     ## calculate depth interval (m)
-    depth_range <- c(depth - height / 2,
-                     depth + height / 2)
+    depth_range <- c(depth[1] - height[1] / 2,
+                     depth[1] + height[1] / 2)
     
     ## calculate sample volume (cubic m)
-    V_sample <- height * width * length
+    V_sample <- height[1] * width[1] * length[1]
   } else if(geometry == "cylinder") {
     
     ## calculate depth interval (m)
-    depth_range <- c(depth - radius,
-                     depth + radius)
+    depth_range <- c(depth[1] - radius[1],
+                     depth[1] + radius[1])
     
     ## calculate sample volume (cubic m)
-    V_sample <- pi * radius^2 * length
-  }
+    V_sample <- pi * radius[1]^2 * length[1]
+ }
   
   ## define number of grains for average estimate
   n_estimate <- 1000
@@ -72,7 +74,6 @@ make_Sample <- function(
   v_estimate <- lapply(
     X = z_estimate, 
     FUN = function(z, book) {
-      
       ## get population probabilities
       p_z <- lapply(X = book$population[-1], 
                     FUN = function(x, z) {
@@ -176,9 +177,12 @@ make_Sample <- function(
   }
   
   ## flag warning for high number of grains
-  if(n_grains > 10^7 & force == FALSE) {
-    stop(paste0("More than 10^7 grains (", n_grains,
-                ") to model. Enable with force = TRUE."))
+  if (n_grains > 10 ^ 7 & force == FALSE) {
+    stop(paste0(
+      "More than 10^7 grains (",
+      n_grains,
+      ") to model. Enable with force = TRUE."
+    ))
   }
   
   ## get number of cores
@@ -189,7 +193,7 @@ make_Sample <- function(
                                         n_cores))
   
   ## check for slice option
-  if(slice == TRUE) {
+  if (slice[1]) {
     
     ## get slice limits in terms of grain size numbers
     i_slice <- c(seq(from = 1, 
@@ -216,7 +220,6 @@ make_Sample <- function(
                        length = length(d_sample_slice))
   
   for(i in 1:length(population)) {
-    
     population[[i]] <- parallel::parLapply(
       cl = cl, 
       X = d_sample_slice[[i]], 
@@ -424,7 +427,7 @@ make_Sample <- function(
   r_grains <- (EMMAgeo::convert.units(phi = grains$grainsize) / (2 * 10^6))
   V_grains <- cumsum(4 / 3 * pi * r_grains^3 * 1/grains$packing)
   
-  ## remove grains that overtop sample volume
+  ## remove grains that over the top of sample volume
   grains <- grains[V_sample >= V_grains,]
   
   ## return output ------------------------------------------------------------
