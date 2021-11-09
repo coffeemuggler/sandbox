@@ -17,7 +17,8 @@ LazyData: TRUE
 Imports:
     EMMAgeo (>= 0.9.7),
     RLumModel (>= 0.2.9),
-    Luminescence (>= 0.9.15)
+    Luminescence (>= 0.9.15),
+    parallel
 Encoding: UTF-8
 Language: en-GB
 RoxygenNote: 7.1.2
