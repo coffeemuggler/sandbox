@@ -6,7 +6,6 @@ Creating and analysing synthetic sediment sections with R
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/concept.svg)](https://www.repostatus.org/#concept)
 [![CRAN](https://www.r-pkg.org/badges/version/sandbox)](https://cran.r-project.org/package=sandbox)
-[![R-CMD-check](https://github.com/coffeemuggler/sandbox/workflows/GitHub%20Actions%20CI/badge.svg)](https://github.com/coffeemuggler/sandbox/actions)
 
 ## Installation
 
