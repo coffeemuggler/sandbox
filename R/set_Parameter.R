@@ -106,7 +106,7 @@ set_Parameter <- function(
   book[book_content == parameter] <- book_edit
 
   ## return output ------------------------------------------------------------
-  if (output_flag) {
+  if (output_flag) 
     return(book)
-  }
+  
 }
