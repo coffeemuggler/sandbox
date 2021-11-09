@@ -1,7 +1,8 @@
 #' @title Probabilistic Numerical Modelling of Sediment Properties
+#' \cr
 #' 
 #' \if{html}{
-#' \figure{logo_sandbox.png}{options: width="50px" alt="logo"}
+#' \figure{logo_sandbox.png}{options: width="50px" alt="sandbox logo"}
 #' }
 #' 
 #' @description Flexible framework for definition and application of time/depth-based 
