@@ -28,7 +28,7 @@ This program is distributed in the hope that it will be useful, but
 WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the [GNU
 General Public
-License](https://github.com/R-Lum/RLumSTARR/blob/master/LICENSE) for
+License](https://github.com/coffeemuggler/sandbox/blob/master/LICENSE) for
 more details.
 
 ## Funding
