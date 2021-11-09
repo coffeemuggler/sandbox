@@ -2,29 +2,29 @@
 % Please edit documentation in R/set_Parameter.R
 \name{set_Parameter}
 \alias{set_Parameter}
-\title{Set profile- and grain-specific model parameters.}
+\title{Set Profile- and Grain-Specific Model Parameters.}
 \usage{
 set_Parameter(book, parameter, type)
 }
 \arguments{
-\item{book}{\code{list} object, rule book to be edited.}
+\item{book}{\link{list} object, rule book to be edited.}
 
-\item{parameter}{\code{Character} scalar, keyword defining the parameter to
+\item{parameter}{\link{character} scalar, keyword defining the parameter to
 be defined. See \code{list_Parameters()} for available keywords. Some
 parameters can be described by more than one function, see details.}
 
-\item{type}{\code{Character} scalar, keyword defining the distribution
+\item{type}{\link{character} scalar, keyword defining the distribution
 function used to describe the parameter. See details for available
-keywords, default is "exact".}
+keywords, default is \code{"exact"}.}
 }
 \value{
-A list object.
+A \link{list} object.
 }
 \description{
 The function defines one model parameter used to generate a set of
 virtual grains. A parameter is defined in a probabilistic way, as parametric
 distribution function. Each parameter of the distribution function can be
-changed through time using \code{set_Rule}.
+changed through time using \link{set_Rule}.
 }
 \details{
 The following parameter types are available:
@@ -36,11 +36,10 @@ constant values for corresponding depths.
 The following additional parameter vectors are required: \code{min}
 (minimum) and \code{max} (maximum)
 \item \code{normal}: parameter varies following a normal distribution,
-which is defined by \code{mean} (mean value) and \code{sd} (standard
-deviation)
+which is defined by mean and standard deviation
 \item \code{gamma}: parameter varies following a gamma distribution,
-defined by \code{shape} (shape parameter), \code{scale} (scale
-parameter) and offset (defining constant offset of values)
+defined by shape parameter, scale parameter)
+and offset (defining constant offset of values)
 }
 }
 \examples{
@@ -57,5 +56,5 @@ book_2$density$density_1$type
 
 }
 \author{
-Michael Dietze
+Michael Dietze, GFZ Potsdam (Germany)
 }

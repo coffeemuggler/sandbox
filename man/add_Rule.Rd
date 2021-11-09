@@ -2,33 +2,33 @@
 % Please edit documentation in R/add_Rule.R
 \name{add_Rule}
 \alias{add_Rule}
-\title{Add a rule to a rule book}
+\title{Add a Rule to a Rule Book}
 \usage{
 add_Rule(book, name, group, type, populations = 1)
 }
 \arguments{
-\item{book}{\code{Character} value, name of the rule book to be modified.}
+\item{book}{\link{character} value, name of the rule book to be modified.}
 
-\item{name}{\code{Character} value, name of the rule rule to be added.}
+\item{name}{\link{character} value, name of the rule rule to be added.}
 
-\item{group}{\code{Character} value, group to which the rule belongs. One
+\item{group}{\link{character} value, group to which the rule belongs. One
 out of \code{"general"} (covering the sediment section properties) and
 \code{"specific"} (relevant for a single grain).}
 
-\item{type}{\code{Character} value, generic type of the rule. One out of
+\item{type}{\link{character} value, generic type of the rule. One out of
 \code{"exact"} (defined by exact value, changing with depth),
 \code{"normal"} (normal distribution, defined by mean and standard
-deviation, changing with depth), \code{"uniform"} (defined by min and
-max value, changing with depth) and \code{"gamma"} (gamma distribution,
+deviation, changing with depth), \code{"uniform"} (defined by minimum and
+maximum values, changing with depth) and \code{"gamma"} (gamma distribution,
 defined by shape and scale parameter and constant offset, all changing
 with depth)}
 
-\item{populations}{\code{Numeric} value, number of populations to create.
+\item{populations}{\link{numeric} value, number of populations to create.
 The number of populations to add should match the existing number of
 populations.}
 }
 \value{
-A list object with all rules for a model run.
+A \link{list} object with all rules for a model run.
 }
 \description{
 The function adds a new rule to an existing rule book. The specified rule
@@ -47,5 +47,5 @@ book_2 <- add_Rule(book = book_1,
                 
 }
 \author{
-Michael Dietze
+Michael Dietze, GFZ Potsdam (Germany)
 }

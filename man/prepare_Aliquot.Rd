@@ -2,22 +2,22 @@
 % Please edit documentation in R/prepare_Aliquot.R
 \name{prepare_Aliquot}
 \alias{prepare_Aliquot}
-\title{Prepare aliquots from sample data set}
+\title{Prepare Aliquots from Sample Dataset}
 \usage{
 prepare_Aliquot(sample, diameter, density = 0.65)
 }
 \arguments{
-\item{sample}{\code{Data frame}, sample object to be distributed to
+\item{sample}{\link{data.frame}, sample object to be distributed to
 aliquots.}
 
-\item{diameter}{\code{Numeric} value, diameter of the alquot sample
+\item{diameter}{\link{numeric} value, diameter of the aliquot sample
 carriers in mm.}
 
-\item{density}{\code{Numeric} value, packing density of the grains on
+\item{density}{\link{numeric} value, packing density of the grains on
 the sample carrier. Default is \code{0.65}.}
 }
 \value{
-\code{List} object with grains organised as aliquots, i.e. list
+\link{list} object with grains organised as aliquots, i.e. list
 elements.
 }
 \description{
@@ -37,5 +37,5 @@ B <- prepare_Aliquot(sample = sample,
                      density = 0.6)
 }
 \author{
-Michael Dietze
+Michael Dietze, GFZ Potsdam (Germany)
 }

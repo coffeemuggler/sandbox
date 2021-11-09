@@ -2,17 +2,17 @@
 % Please edit documentation in R/prepare_Sieving.R
 \name{prepare_Sieving}
 \alias{prepare_Sieving}
-\title{Sieve a sample.}
+\title{Sieve a Sample}
 \usage{
 prepare_Sieving(sample, interval)
 }
 \arguments{
-\item{sample}{\code{Data frame} sample object to be sieved.}
+\item{sample}{\link{data.frame} sample object to be sieved.}
 
-\item{interval}{\code{Numeric} vector, sieve interval, in phi units.}
+\item{interval}{\link{numeric} vector, sieve interval, in phi units.}
 }
 \value{
-\code{Data frame} with grains that are within the sieve interval.
+\link{data.frame} with grains that are within the sieve interval.
 }
 \description{
 The function removes grains that are not within the provided sieve
@@ -23,8 +23,9 @@ interval.
 data(sample)
 
 ## sieve sample (in phi units)
-sample_sieved <- prepare_Sieving(sample = sample,
-                                 interval = c(5, 6))
+sample_sieved <- prepare_Sieving(
+  sample = sample,
+  interval = c(5, 6))
                                  
 ## plot results
 plot(density(x = sample$grainsize, 
@@ -35,9 +36,7 @@ lines(density(x = sample_sieved$grainsize,
               to = 11), 
       col = 2)
 
-
-
 }
 \author{
-Michael Dietze
+Michael Dietze, GFZ Potsdam (Germany)
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/make_Sample.R
 \name{make_Sample}
 \alias{make_Sample}
-\title{Create a virtual sample.}
+\title{Create a Virtual Sample.}
 \usage{
 make_Sample(
   book,
@@ -17,32 +17,32 @@ make_Sample(
 )
 }
 \arguments{
-\item{book}{\code{list} object, RuleBook to be used.}
+\item{book}{\link{list} object, RuleBook to be used.}
 
-\item{depth}{\code{Numeric} scalar, depth of the sample center (m).}
+\item{depth}{\link{numeric} scalar, depth of the sample centre (m).}
 
-\item{geometry}{\code{Character} scalar, keyword defining the geometry of
+\item{geometry}{\link{character} scalar, keyword defining the geometry of
 the sample. One out of \code{"cuboid"} and \code{"cylinder"},
 default is \code{"cuboid"}.}
 
-\item{radius}{\code{Numeric} scalar, radius of the cylinder (m).}
+\item{radius}{\link{numeric} scalar, radius of the cylinder (m).}
 
-\item{height}{\code{Numeric} scalar, height of the cuboid (m).}
+\item{height}{\link{numeric} scalar, height of the cuboid (m).}
 
-\item{width}{\code{Numeric} scalar, width of the cuboid (m).}
+\item{width}{\link{numeric} scalar, width of the cuboid (m).}
 
-\item{length}{\code{Numeric} scalar, length of the cuboid or cylinder (m).}
+\item{length}{\link{numeric} scalar, length of the cuboid or cylinder (m).}
 
-\item{slice}{\code{Logical} scalar, option to sample in repeated slices of
+\item{slice}{\link{logical} scalar, option to sample in repeated slices of
 10^6 grains until the required sample size is reached. Useful to avoid
 memory issues for large numbers of grains per sample volume.}
 
-\item{force}{\code{Logcial} scalar, option to override the default
+\item{force}{\link{logical} scalar, option to override the default
 maximum number of 10^7 grains per sample, set to avoid memory problems
 of the computer.}
 }
 \value{
-A list object.
+A \link{list} object.
 }
 \description{
 The function generates many virtual sediment grains based on the specified
@@ -54,5 +54,5 @@ sample geometry and depth, using the information from a rule book.
 
 }
 \author{
-Michael Dietze
+Michael Dietze, GFZ Potsdam (Germany)
 }

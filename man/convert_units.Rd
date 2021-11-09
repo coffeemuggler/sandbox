@@ -7,14 +7,14 @@
 convert_units(phi, mu)
 }
 \arguments{
-\item{phi}{\code{Numeric} vector, grain-size class values
+\item{phi}{\link{numeric} vector, grain-size class values
 in phi to be converted}
 
-\item{mu}{\code{Numeric} vector, grain-size class values
+\item{mu}{\link{numeric} vector, grain-size class values
 in micrometres to be converted}
 }
 \value{
-\code{Numeric} vector, converted grain-size class values
+\link{numeric} vector, converted grain-size class values
 }
 \description{
 The function converts values from the phi-scale to
@@ -34,5 +34,5 @@ convert_units(mu = mu)
 
 }
 \author{
-Michael Dietze
+Michael Dietze, GFZ Potsdam (Germany)
 }

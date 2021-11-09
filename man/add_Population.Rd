@@ -2,18 +2,18 @@
 % Please edit documentation in R/add_Population.R
 \name{add_Population}
 \alias{add_Population}
-\title{Add a population to a rule book}
+\title{Add a Population to a Rule Book}
 \usage{
 add_Population(book, populations = 1)
 }
 \arguments{
-\item{book}{\code{Character} value, name of the rule book to be modified.}
+\item{book}{\link{character} value, name of the rule book to be modified.}
 
-\item{populations}{\code{Numeric} value, number of additional populations
+\item{populations}{\link{numeric} value, number of additional populations
 to create.}
 }
 \value{
-A list object with all rules for a model run.
+A \link{list} object with all rules for a model run.
 }
 \description{
 The function adds a further population element to all rules or a rule book.
@@ -27,5 +27,5 @@ book_2 <- add_Population(book = book_1,
                          populations = 1)
 }
 \author{
-Michael Dietze
+Michael Dietze, GFZ Potsdam (Germany)
 }

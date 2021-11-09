@@ -35,7 +35,7 @@ continuous representation of a parameter value with depth.
 }
 \details{
 To assign standard OSL model parameters, one of the available keywords of
-the R package \code{'RLumModel'} can be used. The function will then set
+the R package \link{RLumModel-package} can be used. The function will then set
 all rules of the rule book with the standard values associated with these
 models, and setting the standard deviation to zero. The keyword can be
 one out of \code{"Bailey2001"}, \code{"Bailey2004"}, \code{"Pagonis2008"},

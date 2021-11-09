@@ -2,29 +2,29 @@
 % Please edit documentation in R/prepare_Subsample.R
 \name{prepare_Subsample}
 \alias{prepare_Subsample}
-\title{Prepare subsamples from a sample data set}
+\title{Prepare Subsamples from a Sample Dataset}
 \usage{
 prepare_Subsample(sample, number, volume, weight)
 }
 \arguments{
-\item{sample}{\code{Data frame}, sample object to be distributed to
+\item{sample}{\link{data.frame}, sample object to be distributed to
 aliquots.}
 
-\item{number}{\code{Numeric} value, number of evenly large subsamples to
+\item{number}{\link{numeric} value, number of evenly large subsamples to
 be created}
 
-\item{volume}{\code{Numeric} value, volume of subsamples. Remainder
+\item{volume}{\link{numeric} value, volume of subsamples. Remainder
 of the master sample that is too small for the last subsample is
 removed. Volume must be given in m^3 and takes packing density of
 the sample into account.}
 
-\item{weight}{\code{Numeric} value, weight of the subsamples. Remainder
+\item{weight}{\link{numeric} value, weight of the subsamples. Remainder
 of the master sample that is too small for the last subsample is
 removed. Weight is calculated based on density of each grain. Weight
 must be given in kg.}
 }
 \value{
-\code{List} object with grains organised as aliquots, i.e. list
+\link{list} object with grains organised as aliquots, i.e. list
 elements.
 }
 \description{
@@ -39,5 +39,5 @@ data(sample)
 
 }
 \author{
-Michael Dietze
+Michael Dietze, GFZ Postdam (Germany)
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_RuleBook.R
 \name{get_RuleBook}
 \alias{get_RuleBook}
-\title{Get one of a series of predefined rule books for a model run.}
+\title{Get One of a Series of Predefined Rule Books for a Model Run.}
 \usage{
 get_RuleBook(book = "empty", osl = NULL)
 }
@@ -12,11 +12,11 @@ One out of \code{"empty"}, default is \code{"empty"}.}
 
 \item{osl}{\link{character} value, optional keyword for an OSL (optical
 stimulated luminescence) model of choice. Must be one of the available
-models from the R package \code{'RLumModel'}. See details for full list of
+models from the R package \link{RLumModel-package}. See details for full list of
 available models.}
 }
 \value{
-A list object with all rules for a model run.
+A \link{list} object with all rules for a model run.
 }
 \description{
 The function returns a pre-built model rule book, i.e., a combination of
