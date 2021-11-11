@@ -25,7 +25,16 @@
 #' 
 #' @examples
 #'
-#' ## To be done today
+#' \dontrun{
+#' 
+#' sample_01 <- make_Sample(book = dummy_book, 
+#'                          depth = 1, 
+#'                          geometry = "cuboid",
+#'                          height = 0.001,
+#'                          width = 0.001, 
+#'                          length = 0.001)
+#' 
+#' }
 #'
 #' @md
 #' @export make_Sample
