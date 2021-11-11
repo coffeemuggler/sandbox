@@ -10,7 +10,7 @@ set_Parameter(book, parameter, type)
 \item{book}{\link{list} object, rule book to be edited.}
 
 \item{parameter}{\link{character} scalar, keyword defining the parameter to
-be defined. See \code{list_Parameters()} for available keywords. Some
+be defined. Some
 parameters can be described by more than one function, see details.}
 
 \item{type}{\link{character} scalar, keyword defining the distribution

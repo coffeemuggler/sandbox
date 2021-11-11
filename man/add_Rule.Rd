@@ -39,11 +39,12 @@ will be appended to the rule book.
 ## create simple true age-depth-relationship
 book_1 <- get_RuleBook()
 
-book_2 <- add_Rule(book = book_1, 
-                          name = "extrarule", 
-                          group = "general", 
-                          type = "normal", 
-                          populations = 1)
+book_2 <- add_Rule(
+ book = book_1, 
+ name = "extrarule", 
+ group = "general", 
+ type = "normal", 
+ populations = 1)
                 
 }
 \author{

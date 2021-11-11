@@ -38,5 +38,6 @@ book_flat <- get_RuleBook(book = "empty")
 
 }
 \author{
-Michael Dietze, GFZ Potsdam (Germany)
+Michael Dietze, GFZ Potsdam (Germany), Sebastian Kreutzer, Geography & Earth
+Sciences, Aberystwyth University (United Kingdom)
 }
