@@ -48,5 +48,6 @@ book_2 <- add_Rule(
                 
 }
 \author{
-Michael Dietze, GFZ Potsdam (Germany)
+Michael Dietze, GFZ Potsdam (Germany), Sebastian Kreutzer, Geography
+& Earth Sciences, Aberystwyth University (United Kingdom)
 }
