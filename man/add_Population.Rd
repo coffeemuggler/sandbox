@@ -21,10 +21,12 @@ The function adds a further population element to all rules or a rule book.
 \examples{
 
 ## create simple true age-depth-relationship
-book_1 <- get_RuleBook(book = "empty")
+book_1 <- get_RuleBook()
 
-book_2 <- add_Population(book = book_1, 
-                         populations = 1)
+book_2 <- add_Population(
+ book = book_1,
+ populations = 1)
+ 
 }
 \author{
 Michael Dietze, GFZ Potsdam (Germany)

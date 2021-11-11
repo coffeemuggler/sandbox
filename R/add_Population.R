@@ -34,9 +34,8 @@ add_Population <- function(
 
 # Process -----------------------------------------------------------------
   ##maintain all attributes except names
-  attr_default <- attributes(book)[names(attributes(book)) != "names"]
+  attr_default <- attributes(book)
   
- 
   ## remove first book entry
   book_body <- book
   book_body[[1]] <- NULL
@@ -75,15 +74,12 @@ add_Population <- function(
   
 
   ## amalgamate book parts
-  book_new <- c(book[1], 
-                book_body)
+  book_new <- c(book[1], book_body)
   
- 
   ## restore attributes
-  attributes(book_new) <- attr_default
+  attributes(book_new) <-  attr_default
   
   ## return output
   return(book_new)
 
 }
-
