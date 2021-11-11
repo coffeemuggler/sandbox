@@ -22,7 +22,8 @@
 #' 
 #' @return A [list] object with all rules for a model run.
 #' 
-#' @author Michael Dietze, GFZ Potsdam (Germany)
+#' @author Michael Dietze, GFZ Potsdam (Germany), Sebastian Kreutzer, Geography & Earth
+#' Sciences, Aberystwyth University (United Kingdom)
 #' 
 #' @examples
 #'
@@ -36,11 +37,10 @@ get_RuleBook <- function(
   osl = NULL
 ) {
   
-  ## define dummy function/closure
-  fun_dummy <- splinefun(x = c(0, 1),
-                         y = c(0, 1))
+# Dummy function ----------------------------------------------------------
+  fun_dummy <- splinefun(x = c(0, 1), y = c(0, 1))
   
-  ## definition of rule book "flat" -------------------------------------------
+# Empty book --------------------------------------------------------------
   if (book == "empty") {
     rule_book <- list(
       ## title
@@ -83,35 +83,36 @@ get_RuleBook <- function(
 
   }
   
-  if(!is.null(osl) == TRUE) {
+# Add luminescence information --------------------------------------------
+  if(!is.null(osl)) {
+    ## select only the first seven parameters
+    osl_parameters <- RLumModel::.set_pars(model = osl)[1:7]
+  
+    ## set names
+    osl_parameters <- lapply(names(osl_parameters), function(n){
+      paste0("osl_", rep(n, times = length(osl_parameters[[n]])), 1:length(osl_parameters[[n]]))
+    })
     
-    osl_parameters <- RLumModel::.set_pars(model = osl)
+    ## create name list
+    osl_parameters <- c("osl_doserate", unlist(osl_parameters), "osl_R")
     
-    osl_parameters <- osl_parameters[1:7]
-    
-    for(i in 1:length(osl_parameters)){
-      
-      osl_parameters[[i]] <- 
-        paste("osl_", rep(x = names(osl_parameters)[i], 
-                          times = length(osl_parameters[[i]])),
-              1:length(osl_parameters[[i]]),
-              sep = "")
-    }
-    
-    osl_parameters <- c("osl_doserate",
-                        as.character(unlist(osl_parameters)),
-                        "osl_R")
-    
-    for(i in 1:length(osl_parameters)) {
-      rule_book <- add_Rule(book = rule_book, 
-                         name = osl_parameters[i], 
-                         group = "specific",
-                         type = "normal", 
-                         populations = 1)
+    ## add rules per parameter
+    for (i in osl_parameters) {
+      rule_book <- add_Rule(
+        book = rule_book, 
+        name = i, 
+        group = "specific",
+        type = "normal", 
+        populations = 1)
     }
   }
 
   ## return output ------------------------------------------------------------
+  ## set attributes
+  attr(rule_book, "package") <- "sandbox"
+  attr(rule_book, "medium") <- "book"
+   
   return(rule_book)
   
 }
+
