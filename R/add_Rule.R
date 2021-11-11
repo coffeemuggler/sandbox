@@ -32,11 +32,12 @@
 #' ## create simple true age-depth-relationship
 #' book_1 <- get_RuleBook()
 #' 
-#' book_2 <- add_Rule(book = book_1, 
-#'                           name = "extrarule", 
-#'                           group = "general", 
-#'                           type = "normal", 
-#'                           populations = 1)
+#' book_2 <- add_Rule(
+#'  book = book_1, 
+#'  name = "extrarule", 
+#'  group = "general", 
+#'  type = "normal", 
+#'  populations = 1)
 #'                 
 #' @md                           
 #' @export add_Rule
@@ -49,8 +50,7 @@ add_Rule <- function(
 ) {
   
   ## define dummy function/closure
-  fun_dummy <- splinefun(x = c(0, 1),
-                         y = c(0, 1))
+  fun_dummy <- splinefun(x = c(0, 1), y = c(0, 1))
   
   ## define rule to add
   if(type == "exact") {
