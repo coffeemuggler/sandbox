@@ -12,13 +12,13 @@ set_Rule(book, parameter, value, depth, type = "spline")
 \item{parameter}{\link{character} scalar, parameter name to be edited.
 Can also be the keyword for an OSL model. See details.}
 
-\item{value}{\link{numeric} list, specifying the
+\item{value}{\link{numeric} \link{list}, specifying the
 parameter values at the corresponding depth points. If a parameter
 is defined by more than one argument (e.g., mean and standard
 deviation), all the relevant arguments must be defined for each
 corresponding depth as separate list element.}
 
-\item{depth}{\link{numeric} list, specifying the depths used for the
+\item{depth}{\link{numeric} \link{list}, specifying the depths used for the
 interpolation. All elements must be of the same lengths as the
 corresponding data in \code{value}.}
 
@@ -26,7 +26,7 @@ corresponding data in \code{value}.}
 \code{spline}, default is \code{spline}.}
 }
 \value{
-A list object with all created formula objects.
+A \link{list} object with all created formula objects.
 }
 \description{
 The function defines how the specified model parameter varies with depth.
@@ -39,25 +39,29 @@ the R package \link{RLumModel-package} can be used. The function will then set
 all rules of the rule book with the standard values associated with these
 models, and setting the standard deviation to zero. The keyword can be
 one out of \code{"Bailey2001"}, \code{"Bailey2004"}, \code{"Pagonis2008"},
-\code{"Pagonis2007"}, \code{"Bailey2002"} and \verb{"Friedrich2017"\}.  This will fill the rule book with the standard parameters independent of  depth. Note that a dose rate (parameter name }osl_doserate`) needs to
+\code{"Pagonis2007"}, \code{"Bailey2002"} and \code{"Friedrich2017"}.
+This will fill the rule book with the standard parameters independent of
+depth. Note that a dose rate (parameter name \code{osl_doserate}) needs to
 be set separately!
 }
 \examples{
 
 ## create empty rule book
-book_01 <- get_RuleBook(book = "empty")
+book_01 <- get_RuleBook()
 
 ## assign rule definitions to lists
 depth <- list(c(0, 10))
 age <- list(c(0, 1000))
 
 ## add age definition
-book_01 <- set_Rule(book = book_01, 
-                   parameter = "age", 
-                   value = age, 
-                   depth = depth)
+book_01 <- set_Rule(
+ book = book_01, 
+ parameter = "age", 
+ value = age, 
+ depth = depth)
 
 }
 \author{
-Michael Dietze
+Michael Dietze, GFZ Potsdam (Germany), Sebastian Kreutzer, Geography
+& Earth Sciences, Aberystwyth University (United Kingdom)
 }

@@ -9,40 +9,49 @@
 #' all rules of the rule book with the standard values associated with these 
 #' models, and setting the standard deviation to zero. The keyword can be 
 #' one out of `"Bailey2001"`, `"Bailey2004"`, `"Pagonis2008"`, 
-#' `"Pagonis2007"`, `"Bailey2002"` and `"Friedrich2017"}. 
+#' `"Pagonis2007"`, `"Bailey2002"` and `"Friedrich2017"`. 
 #' This will fill the rule book with the standard parameters independent of 
 #' depth. Note that a dose rate (parameter name `osl_doserate`) needs to 
 #' be set separately!
 #'
 #' @param book [list] object, rule book to be edited.
+#' 
 #' @param parameter [character] scalar, parameter name to be edited. 
 #'        Can also be the keyword for an OSL model. See details.
-#' @param value [numeric] list, specifying the
+#' 
+#' @param value [numeric] [list], specifying the
 #'        parameter values at the corresponding depth points. If a parameter
 #'        is defined by more than one argument (e.g., mean and standard
 #'        deviation), all the relevant arguments must be defined for each
 #'        corresponding depth as separate list element.
-#' @param depth [numeric] list, specifying the depths used for the
+#' 
+#' @param depth [numeric] [list], specifying the depths used for the
 #'        interpolation. All elements must be of the same lengths as the
 #'        corresponding data in `value`.
+#' 
 #' @param type [character] scalar, interpolation method. One out of
 #'        `spline`, default is `spline`.
-#' @return A list object with all created formula objects.
-#' @author Michael Dietze
+#' 
+#' @return A [list] object with all created formula objects.
+#' 
+#' @author Michael Dietze, GFZ Potsdam (Germany), Sebastian Kreutzer, Geography 
+#' & Earth Sciences, Aberystwyth University (United Kingdom)
+#' 
 #' @examples
 #'
 #' ## create empty rule book
-#' book_01 <- get_RuleBook(book = "empty")
+#' book_01 <- get_RuleBook()
 #' 
 #' ## assign rule definitions to lists
 #' depth <- list(c(0, 10))
 #' age <- list(c(0, 1000))
 #' 
 #' ## add age definition
-#' book_01 <- set_Rule(book = book_01, 
-#'                    parameter = "age", 
-#'                    value = age, 
-#'                    depth = depth)
+#' book_01 <- set_Rule(
+#'  book = book_01, 
+#'  parameter = "age", 
+#'  value = age, 
+#'  depth = depth)
 #'
 #' @md
 #' @export set_Rule
@@ -91,7 +100,6 @@ set_Rule <- function(
       
       for (i in 2:length(book_edit_new)) 
         book_edit_new[[i]] <- book_edit[[1]][[2]]
-      
       
       names(book_edit_new) <- c(names(book_edit[[1]])[1],
                                 paste(names(book_edit),
