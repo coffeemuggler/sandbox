@@ -54,12 +54,16 @@ set_Rule <- function(
   type = "spline"
 ) {
 ## check/adjust input parameters ---------------------------------------------------
+  ## check input
+  if (!all(c("sandbox", "book") %in% attributes(book)[c("package", "medium")]))
+    stop("[set_Rule()] 'book' is not an object created by sandbox!", call. = FALSE)
+  
   ## check data format of interpolation type
-  if (sum(type == c("spline")) < 1) 
-    warning("Interpolation method unavailable. Spline is used!")
+  if (!any(type[1] %in% c("spline"))) 
+    warning("Interpolation method unavailable. Spline is used!", call. = FALSE)
   
 ## create function ----------------------------------------------------------
-  ## defined keywords
+  ## defined keywords (the models from RLumModel)
   keywords <- c(
     "Bailey2001", 
     "Bailey2004", 
@@ -70,31 +74,24 @@ set_Rule <- function(
   
   ## option 1 - parameter name specified
   if (!parameter[1] %in% keywords) {
-    ## extract book content
-    book_content <- names(book)
-    
-    ## isolate chapter to edit
-    book_edit <- book[book_content == parameter]
-    
     ## account for errors
-    if (length(book_edit) == 0)
+    if (!any(parameter[1] %in% names(book)))
       stop("[set_Rule()] Parameter name not present in rule book!", call. = FALSE)
     
-    if (length(book_edit) > 1)
-      stop("[set_Rule()] Parameter naming issue, too many!", call. = FALSE)
+    ## isolate chapter to edit
+    book_edit <- book[parameter[1]]
     
     ## adjust parameter length
     n_parameters <- length(book_edit[[1]]) - 1
     
     if (n_parameters != length(value)) {
-      book_edit_new <- vector(mode = "list",
-                              length = length(value) + 1)
+      book_edit_new <- vector("list", length(value) + 1)
       
       book_edit_new[[1]] <- book_edit[[1]][[1]]
       
-      for (i in 2:length(book_edit_new)) {
+      for (i in 2:length(book_edit_new)) 
         book_edit_new[[i]] <- book_edit[[1]][[2]]
-      }
+      
       
       names(book_edit_new) <- c(names(book_edit[[1]])[1],
                                 paste(names(book_edit),
@@ -112,11 +109,9 @@ set_Rule <- function(
       
       ## spline interpolation
       if (type == "spline") {
-        for(i in 1:length(value)) {
-          
+        for (i in 1:length(value)) {
           ## update book_edit object
-          book_edit[[1]][[2]][[i + 1]] <- splinefun(x = depth[[1]],
-                                                    y = value[[i]])
+          book_edit[[1]][[2]][[i + 1]] <- splinefun(x = depth[[1]], y = value[[i]])
         }
       }
       
@@ -141,7 +136,7 @@ set_Rule <- function(
     
     ## return output ------------------------------------------------------------
       ## update input book
-      book[book_content == parameter] <- book_edit
+      book[parameter[1]] <- book_edit
       
       ## return output
       output <- book
@@ -152,20 +147,16 @@ set_Rule <- function(
     book_key <- book
     
     ## get OSL parameters of keyword model
-    osl_parameters <- RLumModel::.set_pars(model = parameter)
-    
-    ## reduce to parameters of interest
-    osl_parameters <- osl_parameters[1:7]
+    osl_parameters <- RLumModel::.set_pars(model = parameter)[1:7]
     
     ## create corresponding parameter names
     osl_names <- osl_parameters
     
     for (i in 1:length(osl_names)) {
       osl_names[[i]] <- 
-        paste("osl_", rep(x = names(osl_parameters)[i], 
+        paste0("osl_", rep(x = names(osl_parameters)[i], 
                           times = length(osl_parameters[[i]])),
-              1:length(osl_parameters[[i]]),
-              sep = "")
+              1:length(osl_parameters[[i]]))
     }
     
     ## convert lists to vectors
