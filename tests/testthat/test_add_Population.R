@@ -14,7 +14,7 @@ test_that("full example test", {
   expect_length(book_2, 6)
   
   ## check attributes
-  expect_true(all(names(attributes(book_2)) %in% c("package", "medium")))
+  expect_true(all(names(attributes(book_2)) %in% c("names", "package", "medium")))
   
   ## break function
   expect_error(add_Population(
