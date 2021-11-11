@@ -31,8 +31,18 @@
 #' @author Michael Dietze
 #' @examples
 #'
-#' ## create simple true age-depth-relationship
-#' ## TO BE DONE.
+#' ## create empty rule book
+#' book_01 <- get_RuleBook(book = "empty")
+#' 
+#' ## assign rule definitions to lists
+#' depth <- list(c(0, 10))
+#' age <- list(c(0, 1000))
+#' 
+#' ## add age definition
+#' book_01 <- set_Rule(book = book_01, 
+#'                    parameter = "age", 
+#'                    value = age, 
+#'                    depth = depth)
 #'
 #' @md
 #' @export set_Rule
