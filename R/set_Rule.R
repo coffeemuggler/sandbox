@@ -53,18 +53,12 @@ set_Rule <- function(
   depth,
   type = "spline"
 ) {
-
-  ## check/adjust input parameters ---------------------------------------------------
-
-  ## set output flag
-  output_flag <- TRUE
-
+## check/adjust input parameters ---------------------------------------------------
   ## check data format of interpolation type
   if (sum(type == c("spline")) < 1) 
     warning("Interpolation method unavailable. Spline is used!")
   
 ## create function ----------------------------------------------------------
-
   ## defined keywords
   keywords <- c(
     "Bailey2001", 
@@ -75,8 +69,7 @@ set_Rule <- function(
     "Friedrich2017")
   
   ## option 1 - parameter name specified
-  if (parameter %in% keywords == FALSE) {
-    
+  if (!parameter[1] %in% keywords) {
     ## extract book content
     book_content <- names(book)
     
@@ -147,13 +140,11 @@ set_Rule <- function(
     }
     
     ## return output ------------------------------------------------------------
-    if (output_flag) {
       ## update input book
       book[book_content == parameter] <- book_edit
       
       ## return output
-      return(book)
-    }
+      output <- book
     
   } else {
     
@@ -200,8 +191,10 @@ set_Rule <- function(
     }
     
     ## return output ------------------------------------------------------------
-    if (output_flag) return(book_key)
+    output <- book_key
     
   }
+  
+  return(output)
 
 }
