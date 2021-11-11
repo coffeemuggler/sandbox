@@ -25,7 +25,8 @@
 #' 
 #' @return A [list] object with all rules for a model run.
 #' 
-#' @author Michael Dietze, GFZ Potsdam (Germany)
+#' @author Michael Dietze, GFZ Potsdam (Germany), Sebastian Kreutzer, Geography 
+#' & Earth Sciences, Aberystwyth University (United Kingdom)
 #' 
 #' @examples
 #'
@@ -49,12 +50,22 @@ add_Rule <- function(
   populations = 1
 ) {
   
+# Input checks ------------------------------------------------------------
+  ## check input
+  if (!all(c("sandbox", "book") %in% attributes(book)[c("package", "medium")]))
+    stop("[add_Rule()] 'book' is not an object created by sandbox!", call. = FALSE)
+  
+# Set dummy function ------------------------------------------------------
   ## define dummy function/closure
   fun_dummy <- splinefun(x = c(0, 1), y = c(0, 1))
   
+
+# Add rule ----------------------------------------------------------------
+   ##maintain all attributes except names
+   attr_default <- attributes(book)[names(attributes(book)) != "names"]
+  
   ## define rule to add
   if (type == "exact") {
-    
     rule_add = list(
       group = group)
     
@@ -102,7 +113,7 @@ add_Rule <- function(
   
   ## append new rule
   book[[length(book) + 1]] <- rule_add
-  
+
   ## remove first book entry
   book_body <- book
   book_body[[1]] <- NULL
@@ -112,7 +123,6 @@ add_Rule <- function(
 
   ## extract book types in raw format  
   book_groups <- lapply(X = book_body, FUN = function(book_body) {
-    
     book_body$group
   })
   
@@ -128,6 +138,15 @@ add_Rule <- function(
   book_new <- c(book[[1]], 
                 book_body[book_index == 1], 
                 book_body[book_index == 2])
+  
+
+
+# Return ------------------------------------------------------------------
+  ## set names and restore original attributes
+  names(book_new) <- c(
+    "book", names(book_body[book_index == 1]), names(book_body[book_index == 2]))
+  
+  attributes(book_new) <- attr_default
   
   ## return output
   return(book_new)
