@@ -21,7 +21,7 @@
 #' @param book [list] object, rule book to be edited.
 #' 
 #' @param parameter [character] scalar, keyword defining the parameter to 
-#'        be defined. See `list_Parameters()` for available keywords. Some
+#'        be defined. Some
 #'        parameters can be described by more than one function, see details.
 #'        
 #' @param type [character] scalar, keyword defining the distribution
