@@ -19,6 +19,8 @@ Imports:
     RLumModel (>= 0.2.9),
     Luminescence (>= 0.9.15),
     parallel
+Suggests:
+    testthat (>= 3.0.2),
 Encoding: UTF-8
 Language: en-GB
 RoxygenNote: 7.1.2
