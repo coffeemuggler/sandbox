@@ -53,56 +53,48 @@ add_Rule <- function(
   fun_dummy <- splinefun(x = c(0, 1), y = c(0, 1))
   
   ## define rule to add
-  if(type == "exact") {
+  if (type == "exact") {
     
     rule_add = list(
       group = group)
     
-    for(i in 1:populations) {
-      
-      rule_add[[length(rule_add) + 1]] <- list(type = "exact",
-                                               value = fun_dummy)
+    for (i in 1:populations) {
+      rule_add[[length(rule_add) + 1]] <- list(
+        type = "exact", value = fun_dummy)
       
       names(rule_add)[i + 1] <- paste(name, i, sep = "_")
     }
 
-  } else if(type == "normal") {
-    
-    rule_add = list(
+  } else if (type == "normal") {
+      rule_add = list(
       group = group)
     
-    for(i in 1:populations) {
-      
-      rule_add[[length(rule_add) + 1]] <- list(type = "normal",
-                                               mean = fun_dummy,
-                                               sd = fun_dummy)
+    for (i in 1:populations) {
+      rule_add[[length(rule_add) + 1]] <- list(
+        type = "normal", mean = fun_dummy, sd = fun_dummy)
       
       names(rule_add)[i + 1] <- paste(name, i, sep = "_")
     }
-  } else if(type == "uniform") {
+  } else if (type == "uniform") {
+      rule_add = list(group = group)
     
-    rule_add = list(
-      group = group)
-    
-    for(i in 1:populations) {
-      
+    for (i in 1:populations) {
       rule_add[[length(rule_add) + 1]] <- list(type = "uniform",
                                                min = fun_dummy,
                                                max = fun_dummy)
       
       names(rule_add)[i + 1] <- paste(name, i, sep = "_")
     }
-  } else if(type == "gamma") {
-    
-    rule_add = list(
+  } else if (type == "gamma") {
+      rule_add = list(
       group = group)
     
-    for(i in 1:populations) {
-      
-      rule_add[[length(rule_add) + 1]] <- list(type = "gamma",
-                                               shape = fun_dummy,
-                                               scale = fun_dummy,
-                                               offset = fun_dummy)
+    for (i in 1:populations) {
+      rule_add[[length(rule_add) + 1]] <- list(
+        type = "gamma",
+        shape = fun_dummy,
+        scale = fun_dummy,
+        offset = fun_dummy)
       
       names(rule_add)[i + 1] <- paste(name, i, sep = "_")
     }

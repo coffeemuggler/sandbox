@@ -84,7 +84,8 @@ get_RuleBook <- function(
   }
   
 # Add luminescence information --------------------------------------------
-  if(!is.null(osl)) {
+  if (!is.null(osl)) {
+  
     ## select only the first seven parameters
     osl_parameters <- RLumModel::.set_pars(model = osl)[1:7]
   
