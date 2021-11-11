@@ -82,6 +82,11 @@ get_RuleBook <- function(
           sd = fun_dummy)))
 
   }
+
+# Set attributes to identify book -----------------------------------------
+  ## set attributes
+  attr(rule_book, "package") <- "sandbox"
+  attr(rule_book, "medium") <- "book"
   
 # Add luminescence information --------------------------------------------
   if (!is.null(osl)) {
@@ -109,11 +114,7 @@ get_RuleBook <- function(
   }
 
   ## return output ------------------------------------------------------------
-  ## set attributes
-  attr(rule_book, "package") <- "sandbox"
-  attr(rule_book, "medium") <- "book"
-   
+
   return(rule_book)
   
 }
-
