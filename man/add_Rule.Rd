@@ -9,7 +9,7 @@ add_Rule(book, name, group, type, populations = 1)
 \arguments{
 \item{book}{\link{character} value, name of the rule book to be modified.}
 
-\item{name}{\link{character} value, name of the rule rule to be added.}
+\item{name}{\link{character} value, name of the rule to be added.}
 
 \item{group}{\link{character} value, group to which the rule belongs. One
 out of \code{"general"} (covering the sediment section properties) and

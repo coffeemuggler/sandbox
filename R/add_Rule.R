@@ -5,7 +5,7 @@
 #'
 #' @param book [character] value, name of the rule book to be modified.
 #' 
-#' @param name [character] value, name of the rule rule to be added.
+#' @param name [character] value, name of the rule to be added.
 #' 
 #' @param group [character] value, group to which the rule belongs. One 
 #' out of `"general"` (covering the sediment section properties) and 
@@ -59,15 +59,13 @@ add_Rule <- function(
   ## define dummy function/closure
   fun_dummy <- splinefun(x = c(0, 1), y = c(0, 1))
   
-
 # Add rule ----------------------------------------------------------------
-   ##maintain all attributes except names
-   attr_default <- attributes(book)[names(attributes(book)) != "names"]
+  ##maintain all attributes except names
+  attr_default <- attributes(book)[names(attributes(book)) != "names"]
   
   ## define rule to add
   if (type == "exact") {
-    rule_add = list(
-      group = group)
+    rule_add = list(group = group)
     
     for (i in 1:populations) {
       rule_add[[length(rule_add) + 1]] <- list(
@@ -79,7 +77,6 @@ add_Rule <- function(
   } else if (type == "normal") {
       rule_add = list(
       group = group)
-    
     for (i in 1:populations) {
       rule_add[[length(rule_add) + 1]] <- list(
         type = "normal", mean = fun_dummy, sd = fun_dummy)
