@@ -142,9 +142,9 @@ add_Rule <- function(
   ## set names and restore original attributes
   names(book_new) <- c(
     "book", names(book_body[book_index == 1]), names(book_body[book_index == 2]))
-  
-  attributes(book_new) <- attr_default
+  attributes(book_new) <- c(attributes(book_new), attr_default)
   
   ## return output
   return(book_new)
 }
+
