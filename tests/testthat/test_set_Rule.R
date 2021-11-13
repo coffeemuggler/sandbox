@@ -42,10 +42,7 @@ test_that("full example test", {
     parameter = "nono",
     value = age,
     depth = depth
-  ), "\\[set_Rule\\(\\)\\] Parameter name not present in rule book!")
-  
-  
-
+  ), "\\[set_Rule\\(\\)\\] Parameter name not present in rule book\\!\\n.+")
   
 })
   

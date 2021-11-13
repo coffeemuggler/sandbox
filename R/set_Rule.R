@@ -81,21 +81,22 @@ set_Rule <- function(
     "Bailey2002", 
     "Friedrich2017")
   
-  ## option 1 - parameter name specified
+  ## option 1 - parameter name specified and not part of RLumModel
   if (!parameter[1] %in% keywords) {
     ## account for errors
-    if (!any(parameter[1] %in% names(book)))
-      stop("[set_Rule()] Parameter name not present in rule book!", call. = FALSE)
+    param_names <- names(book)[-1]
+    if (!any(parameter[1] %in% param_names)) {
+      stop(paste("[set_Rule()] Parameter name not present in rule book!\n Supported parameters are:", 
+                 paste(param_names, collapse = ", ")), 
+           call. = FALSE)
+    }
     
     ## isolate chapter to edit
     book_edit <- book[parameter[1]]
     
     ## adjust parameter length
-    n_parameters <- length(book_edit[[1]]) - 1
-    
-    if (n_parameters != length(value)) {
+    if (length(book_edit[[1]][-1]) != length(value)) {
       book_edit_new <- vector("list", length(value) + 1)
-      
       book_edit_new[[1]] <- book_edit[[1]][[1]]
       
       for (i in 2:length(book_edit_new)) 
@@ -112,6 +113,7 @@ set_Rule <- function(
     ## infer group name
     group <- book_edit[[1]]$group
     
+    ## process according to group name
     if (group == "general") {
       ## define rule for general parameter type
       
@@ -135,8 +137,8 @@ set_Rule <- function(
           ## update book_edit object
           
           ## CHANGED, DEPTH LIST HAS NOT SUB LIST I THINK! 2017-10-18
-          book_edit[[1]][[i + 1]][[j + 1]] <- splinefun(x = depth[[1]],
-                                                        y = value[[i]][[j]])
+          book_edit[[1]][[i + 1]][[j + 1]] <- splinefun(
+            x = depth[[1]], y = value[[i]][[j]])
           
         }
       }
@@ -147,7 +149,7 @@ set_Rule <- function(
       book[parameter[1]] <- book_edit
       
       ## return output
-      output <- book
+      return(book)
     
   } else {
     
@@ -190,10 +192,8 @@ set_Rule <- function(
     }
     
     ## return output ------------------------------------------------------------
-    output <- book_key
+    return(book_key)
     
   }
   
-  return(output)
-
 }
