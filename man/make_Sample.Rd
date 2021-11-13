@@ -54,17 +54,15 @@ sample geometry and depth, using the information from a rule book.
 }
 \examples{
 
-\dontrun{
-
+set.seed(12234)
 sample_01 <- make_Sample(
-  book = dummy_book, 
+  book = get_RuleBook(), 
   depth = 1, 
   geometry = "cuboid",
+  n_cores = 1,
   height = 0.001,
   width = 0.001, 
   length = 0.001)
-
-}
 
 }
 \author{

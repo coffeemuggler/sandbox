@@ -36,17 +36,15 @@
 #' 
 #' @examples
 #'
-#' \dontrun{
-#' 
+#' set.seed(12234)
 #' sample_01 <- make_Sample(
-#'   book = dummy_book, 
+#'   book = get_RuleBook(), 
 #'   depth = 1, 
 #'   geometry = "cuboid",
+#'   n_cores = 1,
 #'   height = 0.001,
 #'   width = 0.001, 
 #'   length = 0.001)
-#' 
-#' }
 #'
 #' @md
 #' @export make_Sample
@@ -441,5 +439,10 @@ if (!all(c("sandbox", "book") %in% attributes(book)[c("package", "medium")]))
   grains <- grains[V_sample >= V_grains,]
   
   ## return output ------------------------------------------------------------
+  ## set attributes
+  attributes(grains) <- c(
+    attributes(grains),
+    list(package = "sandbox"))
+  
   return(grains)
 }
