@@ -13,11 +13,12 @@ make_Sample(
   width,
   length,
   slice = TRUE,
-  force = FALSE
+  force = FALSE,
+  n_cores = max(1, parallel::detectCores() - 2)
 )
 }
 \arguments{
-\item{book}{\link{list} object, RuleBook to be used.}
+\item{book}{\link{list} object, initially produced by \link{get_RuleBook}}
 
 \item{depth}{\link{numeric} scalar, depth of the sample centre (m).}
 
@@ -40,6 +41,9 @@ memory issues for large numbers of grains per sample volume.}
 \item{force}{\link{logical} scalar, option to override the default
 maximum number of 10^7 grains per sample, set to avoid memory problems
 of the computer.}
+
+\item{n_cores}{\link{integer} (\emph{optional}) set the number of cores used for the parallel
+processing}
 }
 \value{
 A \link{list} object.
@@ -52,12 +56,13 @@ sample geometry and depth, using the information from a rule book.
 
 \dontrun{
 
-sample_01 <- make_Sample(book = dummy_book, 
-                         depth = 1, 
-                         geometry = "cuboid",
-                         height = 0.001,
-                         width = 0.001, 
-                         length = 0.001)
+sample_01 <- make_Sample(
+  book = dummy_book, 
+  depth = 1, 
+  geometry = "cuboid",
+  height = 0.001,
+  width = 0.001, 
+  length = 0.001)
 
 }
 
