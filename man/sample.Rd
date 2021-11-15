@@ -3,9 +3,9 @@
 \docType{data}
 \name{sample}
 \alias{sample}
-\title{example data}
+\title{Example Grain Size Data}
 \format{
-The format is: 'data.frame':	31188 obs. of  12 variables:
+The format is: 'data.frame':	1000 obs. of  12 variables:
 $ ID               : int  33107 33108 33109 33110 33111 33112 ...
 $ depth            : num  5 5 5 5 5 ...
 $ population       : num  3 1 3 2 1 3 1 3 3 3 ...
@@ -29,7 +29,7 @@ a cuboid sample geometry with 2 mm edge length.
 \examples{
 
 ## load example data set
-data(sample)
+data(sample, envir = environment())
 
 ## plot grain-size distribution
 plot(density(sample$grainsize))

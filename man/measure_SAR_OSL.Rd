@@ -7,14 +7,14 @@
 measure_SAR_OSL(aliquot, sequence, dose_rate = 0.1)
 }
 \arguments{
-\item{aliquot}{\link{data.frame}, a set of grains that are assigned to an
+\item{aliquot}{\link{data.frame} or a \link{list} of it, a set of grains that are assigned to an
 aliquot (sample subset used for measurement), i.e., the result of
 \link{prepare_Aliquot}.}
 
-\item{sequence}{\link{list}, Definition of the SAR protocol.}
+\item{sequence}{\link{list}, definition of the SAR protocol.}
 
 \item{dose_rate}{\link{numeric} value, Dose rate of the luminescence
-reader, in Gy.}
+reader, in Gy/s.}
 }
 \value{
 \link[Luminescence:RLum.Analysis-class]{Luminescence::RLum.Analysis} object. Equivalent of the import result for
@@ -34,13 +34,30 @@ photon count curves.
 }
 \examples{
 
-\dontrun{
+## load example data set
+data(sample_osl_aliquots, envir = environment())
 
-## create dummy data set
+sequence <- list(
+  RegDose = c(0, 1, 2, 5, 10, 0, 1),
+  TestDose = 2,
+  PH = 220,
+  CH = 200,
+  OSL_temp = 125,
+  OSL_duration = 70)
 
-}
+## reduce number of 
+## grains to two
+sample_osl_aliquots$aliquot_1 <- 
+sample_osl_aliquots$aliquot_1[1:2,]
+
+## or measure all aliquots in a row
+sar_all <- measure_SAR_OSL(
+ aliquot = sample_osl_aliquots,
+ sequence = sequence,
+ dose_rate = 0.1)
 
 }
 \author{
-Michael Dietze, GFZ Potsdam (Germany)
+Michael Dietze, GFZ Potsdam (Germany),
+Sebastian Kreutzer, Geography & Earth Sciences, Aberystwyth University (United Kingdom)
 }

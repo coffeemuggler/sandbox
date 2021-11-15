@@ -40,5 +40,6 @@ B <- prepare_Aliquot(
  
 }
 \author{
-Michael Dietze, GFZ Potsdam (Germany), Sebastian Kreutzer, Geography & Earth Sciences, Aberystwyth University (United Kingdom)
+Michael Dietze, GFZ Potsdam (Germany),
+Sebastian Kreutzer, Geography & Earth Sciences, Aberystwyth University (United Kingdom)
 }
