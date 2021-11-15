@@ -31,11 +31,11 @@ data(sample, envir = environment())
 
 A <- prepare_Aliquot(
  sample = sample, 
- diameter = 5)
+ diameter = 0.1)
 
 B <- prepare_Aliquot(
  sample = sample, 
- diameter = 2, 
+ diameter = 1, 
  density = 0.6)
  
 }
