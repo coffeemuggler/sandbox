@@ -24,11 +24,11 @@
 #' 
 #' A <- prepare_Aliquot(
 #'  sample = sample, 
-#'  diameter = 5)
+#'  diameter = 0.1)
 #' 
 #' B <- prepare_Aliquot(
 #'  sample = sample, 
-#'  diameter = 2, 
+#'  diameter = 1, 
 #'  density = 0.6)
 #'  
 #' @md
@@ -40,9 +40,14 @@ prepare_Aliquot <- function(
 ) {
   
 # Check incoming ----------------------------------------------------------
-  ## todo check the input object
-
+  if (is.null(attributes(sample)$package) || attributes(sample)$package != "sandbox")
+    stop("[prepare_Aliquot()] the input for sample is not an object created by 'sandbox'!", 
+         call. = FALSE)
   
+  if (!is(sample, "data.frame"))
+    stop("[prepare_Aliquot()] the input for sample is not of type data.frame!", 
+         call. = FALSE)
+
 # Prepare aliquots ----------------------------------------------------------
   ## reminder: the code below works with the areas of grains and aliquots
 
@@ -90,7 +95,7 @@ prepare_Aliquot <- function(
   ## set list names
   names(aliquots) <- paste0("aliquot_", 1:length(aliquots))
   
-  ## set attributes
+  ## set package attributes
   attr(aliquots, "package") <- "sandbox"
   
   return(aliquots)
