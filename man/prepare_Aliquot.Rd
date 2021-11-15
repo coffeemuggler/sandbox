@@ -14,28 +14,31 @@ aliquots.}
 carriers in mm.}
 
 \item{density}{\link{numeric} value, packing density of the grains on
-the sample carrier. Default is \code{0.65}.}
+the sample carrier. Default is \code{0.65}. The packing density is unitless.}
 }
 \value{
-\link{list} object with grains organised as aliquots, i.e. list
+\link{list} of \link{data.frame} objects with grains organised as aliquots, i.e. list
 elements.
 }
 \description{
 The function consecutively fills aliquots (i.e., subsamples distributed on
-round carrier discs) with grains from an input sample. remaining grains that
+round carrier discs) with grains from an input sample. Remaining grains that
 are not enough to fill a further aliquot are discarded.
 }
 \examples{
 ## load example data set
-data(sample)
+data(sample, envir = environment())
 
-A <- prepare_Aliquot(sample = sample, 
-                     diameter = 5)
+A <- prepare_Aliquot(
+ sample = sample, 
+ diameter = 5)
 
-B <- prepare_Aliquot(sample = sample, 
-                     diameter = 2, 
-                     density = 0.6)
+B <- prepare_Aliquot(
+ sample = sample, 
+ diameter = 2, 
+ density = 0.6)
+ 
 }
 \author{
-Michael Dietze, GFZ Potsdam (Germany)
+Michael Dietze, GFZ Potsdam (Germany), Sebastian Kreutzer, Geography & Earth Sciences, Aberystwyth University (United Kingdom)
 }
