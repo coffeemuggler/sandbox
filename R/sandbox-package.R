@@ -17,7 +17,6 @@
 #' @author Michael Dietze (GFZ Potsdam, Germany), 
 #'  Sebastian Kreutzer (Geography & Earth Sciences, Aberystwyth University, United Kingdom)
 #' @keywords package
-#' @import EMMAgeo
 #' @importFrom stats rnorm runif rgamma splinefun
 #' @importFrom methods is
 NULL
