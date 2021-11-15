@@ -1,7 +1,7 @@
 #' @title Prepare Aliquots from Sample Dataset
 #' 
 #' @description The function consecutively fills aliquots (i.e., subsamples distributed on 
-#' round carrier discs) with grains from an input sample. remaining grains that 
+#' round carrier discs) with grains from an input sample. Remaining grains that 
 #' are not enough to fill a further aliquot are discarded.
 #' 
 #' @param sample [data.frame], sample object to be distributed to 
@@ -11,23 +11,26 @@
 #' carriers in mm.
 #' 
 #' @param density [numeric] value, packing density of the grains on
-#' the sample carrier. Default is `0.65`.
+#' the sample carrier. Default is `0.65`. The packing density is unitless.
 #' 
-#' @return [list] object with grains organised as aliquots, i.e. list 
+#' @return [list] of [data.frame] objects with grains organised as aliquots, i.e. list 
 #' elements.
 #' 
-#' @author Michael Dietze, GFZ Potsdam (Germany)
+#' @author Michael Dietze, GFZ Potsdam (Germany), Sebastian Kreutzer, Geography & Earth Sciences, Aberystwyth University (United Kingdom)
 #' 
 #' @examples
 #' ## load example data set
-#' data(sample)
+#' data(sample, envir = environment())
 #' 
-#' A <- prepare_Aliquot(sample = sample, 
-#'                      diameter = 5)
+#' A <- prepare_Aliquot(
+#'  sample = sample, 
+#'  diameter = 5)
 #' 
-#' B <- prepare_Aliquot(sample = sample, 
-#'                      diameter = 2, 
-#'                      density = 0.6)
+#' B <- prepare_Aliquot(
+#'  sample = sample, 
+#'  diameter = 2, 
+#'  density = 0.6)
+#'  
 #' @md
 #' @export prepare_Aliquot
 prepare_Aliquot <- function(
@@ -36,38 +39,59 @@ prepare_Aliquot <- function(
   density = 0.65
 ) {
   
-  area_aliqout <- pi * (diameter / 1000)^2 / 4
+# Check incoming ----------------------------------------------------------
+  ## todo check the input object
 
-  diameter_grains <- EMMAgeo::convert.units(phi = sample$grainsize) / 10^6
   
-  area_grains <- pi * diameter_grains^2 / 4 / density
+# Prepare aliquots ----------------------------------------------------------
+  ## reminder: the code below works with the areas of grains and aliquots
+
+  ## calculate area of an aliquot in m 
+  area_aliqout <- pi * (diameter[1] / 1000)^2 / 4
+
+  ## calculate diameter grains and convert to m (instead of µm)
+  diameter_grains <- convert_units(phi = sample[["grainsize"]]) / 1e+06
   
+  ## calculate the area of each spherical grain (2D) normalised to the  
+  ## selected packing density ... this gives basically the number of 
+  ## available grains
+  area_grains <- pi * diameter_grains^2 / 4 / density[1]
+  
+  ## get the cumulative area of the grains 
   area_grains_cum <- cumsum(area_grains)
   
-  aliquot_n <- seq(from = area_aliqout, 
-                   to = max(area_grains_cum), 
-                   by = area_aliqout)
+  ## check whether settings make sense
+  if (max(area_grains_cum) <= area_aliqout)
+    stop("[prepare_Aliquot()] chosen aliquot diameter too large; exceeding area sum of all grains!", 
+         call. = FALSE)
   
-  aliquot_i <- seq(from = 1, 
-                   to = length(area_grains))
-  
-  aliquot_cut <- numeric(length = length(aliquot_n))
-  
-  for (i in 1:length(aliquot_cut)) {
-      i_cut <- abs(area_grains_cum - aliquot_n[i]) == 
-      min(abs(area_grains_cum - aliquot_n[i]))
-    
-    aliquot_cut[i] <- aliquot_i[i_cut]
-  }
-  
-  aliquot_cut <- c(1, aliquot_cut)
+  ## determine grain area **limits** each aliquot can eat-up given the area of
+  ## one aliquot and the total available grain surface area
+  ## (one aliquot contains multiple grains)
+  ## note the number of aliquots is this length -1 
+  aliquot_n <- seq(
+    from = 0, 
+    to = max(area_grains_cum), 
+    by = area_aliqout)
 
-  aliquots <- vector(mode = "list", 
-                     length = length(aliquot_n))
+  ## create an index vector for the grain areas
+  aliquot_i <- seq(from = 1, to = length(area_grains)) 
   
-  for (i in 1:length(aliquots)) {
-    aliquots[[i]] <- sample[aliquot_cut[i]:aliquot_cut[i + 1],]
-  }
+  aliquot_cut <- vapply(aliquot_n, function(a) {
+    aliquot_i[which.min(abs(area_grains_cum - a))]
+  }, numeric(1))
+
+  ## create list vector of aliquots
+  aliquots <- lapply(2:length(aliquot_n), function(i) {
+    sample[aliquot_cut[i - 1]:aliquot_cut[i], ]
+  })
+  
+# Return ------------------------------------------------------------------
+  ## set list names
+  names(aliquots) <- paste0("aliquot_", 1:length(aliquots))
+  
+  ## set attributes
+  attr(aliquots, "package") <- "sandbox"
   
   return(aliquots)
 }
