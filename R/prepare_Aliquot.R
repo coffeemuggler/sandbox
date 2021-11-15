@@ -16,7 +16,8 @@
 #' @return [list] of [data.frame] objects with grains organised as aliquots, i.e. list 
 #' elements.
 #' 
-#' @author Michael Dietze, GFZ Potsdam (Germany), Sebastian Kreutzer, Geography & Earth Sciences, Aberystwyth University (United Kingdom)
+#' @author Michael Dietze, GFZ Potsdam (Germany), 
+#' Sebastian Kreutzer, Geography & Earth Sciences, Aberystwyth University (United Kingdom)
 #' 
 #' @examples
 #' ## load example data set
