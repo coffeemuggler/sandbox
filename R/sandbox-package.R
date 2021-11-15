@@ -19,6 +19,7 @@
 #' @keywords package
 #' @import EMMAgeo
 #' @importFrom stats rnorm runif rgamma splinefun
+#' @importFrom methods is
 NULL
 
 #' example data
