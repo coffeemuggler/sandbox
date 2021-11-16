@@ -37,6 +37,9 @@ contained grains (parameter \code{number}), by volume (parameter
 ## load example data set
 data(sample)
 
+## create 10 subsamples
+prepare_Subsample(sample, 10) 
+
 }
 \author{
 Michael Dietze, GFZ Postdam (Germany)
