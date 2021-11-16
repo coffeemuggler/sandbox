@@ -20,7 +20,7 @@ interval.
 }
 \examples{
 ## load example data set
-data(sample)
+data(sample, envir = environment())
 
 ## sieve sample (in phi units)
 sample_sieved <- prepare_Sieving(
@@ -28,13 +28,15 @@ sample_sieved <- prepare_Sieving(
   interval = c(5, 6))
                                  
 ## plot results
-plot(density(x = sample$grainsize, 
-             from = -1, 
-             to = 11))
-lines(density(x = sample_sieved$grainsize, 
-              from = -1, 
-              to = 11), 
-      col = 2)
+plot(density(
+  x = sample$grainsize, 
+  from = -1, 
+  to = 11))
+lines(density(
+  x = sample_sieved$grainsize, 
+  from = -1, 
+  to = 11), 
+  col = 2)
 
 }
 \author{
