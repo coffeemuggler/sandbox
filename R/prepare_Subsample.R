@@ -28,7 +28,7 @@
 #' 
 #' @examples
 #' ## load example data set
-#' data(sample)
+#' data(sample, envir = environment())
 #' 
 #' ## create 10 subsamples
 #' prepare_Subsample(sample, 10) 
