@@ -101,14 +101,12 @@ if (!all(c("sandbox", "book") %in% attributes(book)[c("package", "medium")]))
     X = z_estimate, 
     FUN = function(z, book) {
       ## get population probabilities
-      p_z <- lapply(X = book$population[-1], 
-                    FUN = function(x, z) {
-                      x$value(x = z)
-                    }, z)
-      
-      ## convert list to vector
-      p_z <- do.call(c, p_z)
-      
+      p_z <- vapply(
+        X = book$population[-1],
+        FUN = function(x, z) {
+            x$value(x = z)}, 
+        FUN.VALUE = numeric(1), z = z)
+
       ## account for negative values
       p_z[p_z < 0] <- 0
       
@@ -180,9 +178,9 @@ if (!all(c("sandbox", "book") %in% attributes(book)[c("package", "medium")]))
       
     }, book = book)
   
+  
   ## estimate 110 % of total number of grains for sample volume
-  n_grains <- round(V_sample * n_estimate / 
-                      sum(do.call(c, v_estimate)) * 1.1)
+  n_grains <- round(V_sample * n_estimate / sum(unlist(v_estimate)) * 1.1)
 
   ## create grains as data frame ----------------------------------------------
   
@@ -446,3 +444,4 @@ if (!all(c("sandbox", "book") %in% attributes(book)[c("package", "medium")]))
   
   return(grains)
 }
+
