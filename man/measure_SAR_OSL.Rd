@@ -19,7 +19,7 @@ reader, in Gy/s.}
 \value{
 \link[Luminescence:RLum.Analysis-class]{Luminescence::RLum.Analysis} object. Equivalent of the import result for
 a real world measurement file. This object can be evaluated by functions
-of the package \link{Luminescence-package}.
+of the package \code{Luminescence-package}.
 }
 \description{
 The function models the time-dependent photon counts of an aliquot
@@ -27,7 +27,7 @@ according to the specified CW SAR OSL (continuous wave, single aliquot
 regenerative dose protocol for optically stimulated luminescence) sequence
 and parameters. The modelling is done for each component and photon count
 curves are summed to return an \link[Luminescence:RLum.Analysis-class]{Luminescence::RLum.Analysis} object as equivalent of
-importing a real measurement data set to the R-package \link{Luminescence-package}.
+importing a real measurement data set to the R-package \code{Luminescence-package}.
 
 The function uses the package \link{RLumModel-package} to perform the simulation of the
 photon count curves.
