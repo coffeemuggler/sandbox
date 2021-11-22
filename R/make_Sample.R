@@ -173,8 +173,8 @@ if (!all(c("sandbox", "book") %in% attributes(book)[c("package", "medium")]))
       ## calculate packing density-corrected grain volume
       v_z <- 4 / 3 * pi * r_z^3 * 1/w_z
       
-      ## return output
-      return(v_z)
+      ## return output if volume is positive
+      if (v_z > 0) return(v_z)
       
     }, book = book)
   
@@ -182,6 +182,10 @@ if (!all(c("sandbox", "book") %in% attributes(book)[c("package", "medium")]))
   ## estimate 110 % of total number of grains for sample volume
   n_grains <- round(V_sample * n_estimate / sum(unlist(v_estimate)) * 1.1)
 
+  ## stop if sample volume is too small
+  if (n_grains < 1) 
+    stop("[make_Sample()] Sample volume is smaller than grain diameter!", call. = FALSE)
+  
   ## create grains as data frame ----------------------------------------------
   
   ## get grain depths for sample
@@ -444,4 +448,5 @@ if (!all(c("sandbox", "book") %in% attributes(book)[c("package", "medium")]))
   
   return(grains)
 }
+
 
