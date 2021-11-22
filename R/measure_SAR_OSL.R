@@ -5,7 +5,7 @@
 #' regenerative dose protocol for optically stimulated luminescence) sequence 
 #' and parameters. The modelling is done for each component and photon count 
 #' curves are summed to return an [Luminescence::RLum.Analysis-class] object as equivalent of 
-#' importing a real measurement data set to the R-package [Luminescence-package].
+#' importing a real measurement data set to the R-package `Luminescence-package`.
 #' 
 #' The function uses the package [RLumModel-package] to perform the simulation of the 
 #' photon count curves. 
@@ -21,7 +21,7 @@
 #' 
 #' @return [Luminescence::RLum.Analysis-class] object. Equivalent of the import result for 
 #' a real world measurement file. This object can be evaluated by functions 
-#' of the package [Luminescence-package].
+#' of the package `Luminescence-package`.
 #' 
 #' @author Michael Dietze, GFZ Potsdam (Germany), 
 #' Sebastian Kreutzer, Geography & Earth Sciences, Aberystwyth University (United Kingdom)
