@@ -16,12 +16,12 @@ Depends:
     R (>= 4.0)
 LazyData: TRUE
 Imports:
-    EMMAgeo (>= 0.9.7),
     methods,
     RLumModel (>= 0.2.9),
-    Luminescence (>= 0.9.15),
     parallel
 Suggests:
+    EMMAgeo (>= 0.9.7),
+    Luminescence (>= 0.9.15),
     testthat (>= 3.0.2),
 Encoding: UTF-8
 Language: en-GB
