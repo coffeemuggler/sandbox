@@ -5,6 +5,9 @@ Version: 0.2.1
 Date: 2021-11-15
 Author: Michael Dietze [aut, cre] (<https://orcid.org/0000-0001-6063-1726>),
   Sebastian Kreutzer [aut] (<https://orcid.org/0000-0002-0734-2199>)
+Authors@R: c(
+    person("Michael", "Dietze", role = c("aut", "cre"), email = "mdietze@gfz-potsdam.de", comment = c(ORCID = "0000-0001-6063-1726")),
+    person("Sebastian", "Kreutzer", role = c("aut"), comment = c(ORCID = "0000-0002-0734-2199")))
 Maintainer: Michael Dietze <mdietze@gfz-potsdam.de>
 Description: A flexible framework for definition and application of time/depth-
     based rules for sets of parameters for single grains that can be used to 
