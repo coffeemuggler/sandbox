@@ -19,17 +19,13 @@ devtools::install_github("coffeemuggler/sandbox@<wanted branch>")
 
 ## License
 
-This program is free software: you can redistribute it and/or modify it
-under the terms of the GNU General Public License as published by the
-Free Software Foundation, either version 3 of the License, or any later
-version.
+License:  GNU General Public License, Version 3, 29 June 2007
 
-This program is distributed in the hope that it will be useful, but
-WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the [GNU
-General Public
-License](https://github.com/coffeemuggler/sandbox/blob/master/LICENSE) for
-more details.
+Copyright © 2021 coffeemuggler developers community
+
+sandbox is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. sandbox is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+See the GNU General Public License for more details. You should have received a copy of the GNU General Public License along with this program. If not, see <http://www.gnu.org/licenses/>. 
 
 ## Citation
 
