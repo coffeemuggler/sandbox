@@ -28,6 +28,8 @@
 #' 
 #' @examples
 #' 
+#' \dontrun{
+#' 
 #' ## load example data set
 #' data(sample_osl_aliquots, envir = environment())
 #' 
@@ -49,6 +51,8 @@
 #'  aliquot = sample_osl_aliquots,
 #'  sequence = sequence,
 #'  dose_rate = 0.1)
+#'  
+#'  }
 #' 
 #' @md 
 #' @export measure_SAR_OSL
