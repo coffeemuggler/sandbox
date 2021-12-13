@@ -31,6 +31,14 @@ General Public
 License](https://github.com/coffeemuggler/sandbox/blob/master/LICENSE) for
 more details.
 
+## Citation
+
+Please use both of the below references when citing the usage of the package. It is important to not just use one of them but the two.
+
+Dietze, M., Kreutzer, S. (2021): sandbox - an R tool for creating and analysing synthetic sediment sections. V. 0.2.0. GFZ Data Services. https://doi.org/10.5880/GFZ.4.6.2021.005
+
+Dietze, M., Kreutzer, S., Fuchs, M. C., and Meszner, S.: sandbox – Creating and Analysing Synthetic Sediment Sections with R, Geochronology Discuss. [preprint], https://doi.org/10.5194/gchron-2021-39, in review, 2021.
+
 ## Funding
 
 Sebastian Kreutzer received funding from the European Union’s Horizon
