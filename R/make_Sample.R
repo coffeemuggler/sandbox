@@ -304,7 +304,7 @@ if (!all(c("sandbox", "book") %in% attributes(book)[c("package", "medium")]))
           book[[i]][[2]][[2]](x = grains$d_sample)
           }, silent = TRUE)
         
-        if (class(x_out[1]) == "try-error") 
+        if (class(x_out[1])[1] == "try-error") 
           x_out <- rep(NA, nrow(grains))
         
         grains[,i + 2] <- x_out
@@ -323,7 +323,7 @@ if (!all(c("sandbox", "book") %in% attributes(book)[c("package", "medium")]))
             sd = sd_pre), 
           silent = TRUE)
         
-        if (class(x_out[1]) == "try-error") 
+        if (class(x_out[1])[1] == "try-error") 
           x_out <- rep(NA, nrow(grains))
         
         grains[,i + 2] <- x_out
@@ -344,7 +344,7 @@ if (!all(c("sandbox", "book") %in% attributes(book)[c("package", "medium")]))
             max = max_pre)},
           silent = TRUE)
         
-        if (class(x_out[1]) == "try-error") 
+        if (class(x_out[1])[1] == "try-error") 
           x_out <- rep(NA, nrow(grains))
     
         grains[,i + 2] <- x_out
@@ -366,7 +366,7 @@ if (!all(c("sandbox", "book") %in% attributes(book)[c("package", "medium")]))
             scale = scale_pre) + offset_pre
           }, silent = TRUE)
         
-        if (class(x_out[1]) == "try-error") 
+        if (class(x_out[1])[1] == "try-error") 
           x_out <- rep(NA, nrow(grains))
         
         grains[,i + 2] <- x_out
@@ -384,7 +384,7 @@ if (!all(c("sandbox", "book") %in% attributes(book)[c("package", "medium")]))
             x = grains$d_sample[ID_population_j]),
             silent = TRUE)
           
-          if (class(x_out[1]) == "try-error")
+          if (class(x_out[1])[1] == "try-error")
             x_out <- rep(NA, nrow(grains))
 
           grains[ID_population_j,i + 2] <- x_out
@@ -397,7 +397,7 @@ if (!all(c("sandbox", "book") %in% attributes(book)[c("package", "medium")]))
               sd = abs(book[[i]][[j + 1]]$sd(x = grains$d_sample))),
             silent = TRUE)
           
-          if (class(x_out[1]) == "try-error") 
+          if (class(x_out[1])[1] == "try-error") 
             x_out <- rep(NA, nrow(grains))
           
           grains[ID_population_j,i + 2] <- x_out
@@ -410,7 +410,7 @@ if (!all(c("sandbox", "book") %in% attributes(book)[c("package", "medium")]))
               max = book[[i]][[j + 1]]$max(x = grains$d_sample)),
             silent = TRUE)
           
-          if (class(x_out[1]) == "try-error")
+          if (class(x_out[1])[1] == "try-error")
             x_out <- rep(NA, nrow(grains))
           
           grains[ID_population_j,i + 2] <- x_out
@@ -424,7 +424,7 @@ if (!all(c("sandbox", "book") %in% attributes(book)[c("package", "medium")]))
               book[[i]][[j + 1]]$offset(x = grains$d_sample),
             silent = TRUE)
           
-          if (class(x_out[1]) == "try-error")
+          if (class(x_out[1])[1] == "try-error")
             x_out <- rep(NA, nrow(grains))
         
           grains[ID_population_j,i + 2] <- x_out
