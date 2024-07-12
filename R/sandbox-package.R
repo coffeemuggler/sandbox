@@ -13,13 +13,13 @@
 #' @md
 #' @name sandbox-package
 #' @aliases sandbox
-#' @docType package
 #' @author Michael Dietze (GFZ Potsdam, Germany), 
 #'  Sebastian Kreutzer (Geography & Earth Sciences, Aberystwyth University, United Kingdom)
 #' @keywords package
 #' @importFrom stats rnorm runif rgamma splinefun
 #' @importFrom methods is
-NULL
+"_PACKAGE"
+
 
 #' Example Grain Size Data
 #' 
