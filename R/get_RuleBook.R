@@ -17,7 +17,7 @@
 #'        
 #' @param osl [character] value, optional keyword for an OSL (optical 
 #' stimulated luminescence) model of choice. Must be one of the available 
-#' models from the R package [RLumModel-package]. See details for full list of 
+#' models from the R package [RLumModel::RLumModel-package]. See details for full list of 
 #' available models.
 #' 
 #' @return A [list] object with all rules for a model run.

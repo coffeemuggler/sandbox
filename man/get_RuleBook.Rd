@@ -12,7 +12,7 @@ One out of \code{"empty"}, default is \code{"empty"}.}
 
 \item{osl}{\link{character} value, optional keyword for an OSL (optical
 stimulated luminescence) model of choice. Must be one of the available
-models from the R package \link{RLumModel-package}. See details for full list of
+models from the R package \link[RLumModel:RLumModel-package]{RLumModel::RLumModel-package}. See details for full list of
 available models.}
 }
 \value{

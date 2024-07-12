@@ -5,7 +5,7 @@
 #' continuous representation of a parameter value with depth.
 #'
 #' @details To assign standard OSL model parameters, one of the available keywords of 
-#' the R package [RLumModel-package] can be used. The function will then set 
+#' the R package [RLumModel::RLumModel-package] can be used. The function will then set 
 #' all rules of the rule book with the standard values associated with these 
 #' models, and setting the standard deviation to zero. The keyword can be 
 #' one out of `"Bailey2001"`, `"Bailey2004"`, `"Pagonis2008"`, 

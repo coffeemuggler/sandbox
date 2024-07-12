@@ -7,7 +7,7 @@
 #' curves are summed to return an [Luminescence::RLum.Analysis-class] object as equivalent of 
 #' importing a real measurement data set to the R-package `Luminescence-package`.
 #' 
-#' The function uses the package [RLumModel-package] to perform the simulation of the 
+#' The function uses the package [RLumModel::RLumModel-package] to perform the simulation of the 
 #' photon count curves. 
 #' 
 #' @param aliquot [data.frame] or a [list] of it, a set of grains that are assigned to an 

@@ -29,7 +29,7 @@ and parameters. The modelling is done for each component and photon count
 curves are summed to return an \link[Luminescence:RLum.Analysis-class]{Luminescence::RLum.Analysis} object as equivalent of
 importing a real measurement data set to the R-package \code{Luminescence-package}.
 
-The function uses the package \link{RLumModel-package} to perform the simulation of the
+The function uses the package \link[RLumModel:RLumModel-package]{RLumModel::RLumModel-package} to perform the simulation of the
 photon count curves.
 }
 \examples{
